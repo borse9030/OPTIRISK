@@ -13,21 +13,16 @@ import {
   X,
   ShieldCheck,
   CheckCircle2,
-  UserCheck,
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
-import { useData, UserPersona } from '@/context/DataContext';
 
 export default function LoginPage() {
   const router = useRouter();
-  const { switchPersona } = useData();
   const {
     user,
     loginWithEmail,
     signupWithEmail,
     loginWithGoogle,
-    loginWithDemoPersona,
-    isFirebaseActive,
     error,
     clearError,
   } = useAuth();
@@ -51,7 +46,7 @@ export default function LoginPage() {
         await loginWithEmail(email, password);
       } else {
         if (!displayName.trim()) {
-          setLocalError('Please provide your full name.');
+          setLocalError('Please enter your full name.');
           setLoading(false);
           return;
         }
@@ -59,7 +54,7 @@ export default function LoginPage() {
       }
       router.push('/dashboard');
     } catch (err: any) {
-      setLocalError(err.message || 'Authentication failed. Please verify your details.');
+      setLocalError(err.message || 'Authentication failed. Please check your credentials.');
     } finally {
       setLoading(false);
     }
@@ -79,19 +74,10 @@ export default function LoginPage() {
     }
   };
 
-  const handleQuickPersona = (personaKey: UserPersona) => {
-    loginWithDemoPersona(personaKey);
-    switchPersona(personaKey);
-    setLoading(true);
-    setTimeout(() => {
-      router.push('/dashboard');
-    }, 200);
-  };
-
   const activeError = localError || error;
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center px-4 sm:px-6 py-6 sm:py-10">
+    <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center px-4 sm:px-6 py-8 sm:py-12">
       <div className="w-full max-w-md space-y-4">
         {/* Brand Header */}
         <div className="text-center space-y-1.5">
@@ -105,13 +91,13 @@ export default function LoginPage() {
             Cyber Risk Quantification & Optimization Platform
           </p>
           <div className="text-[10px] sm:text-[11px] text-slate-400">
-            Titan Financial Group • Enterprise Authentication
+            Titan Financial Group • Enterprise Authentication Gateway
           </div>
         </div>
 
-        {/* Already Logged In Session Notification */}
+        {/* Active Session Notification if already logged in */}
         {user && (
-          <div className="bg-white rounded-xl p-3 border border-blue-200 shadow-xs flex items-center justify-between gap-2">
+          <div className="bg-white rounded-xl p-3 border border-blue-200 shadow-xs flex items-center justify-between gap-2 animate-in fade-in">
             <div className="flex items-center gap-2 min-w-0">
               <div className="w-7 h-7 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center text-xs font-bold text-blue-700 shrink-0">
                 {user.avatar}
@@ -133,10 +119,10 @@ export default function LoginPage() {
           </div>
         )}
 
-        {/* Card Container */}
-        <div className="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 shadow-xs space-y-4">
+        {/* Clean Production Login Card */}
+        <div className="bg-white rounded-xl p-5 sm:p-6 border border-slate-200 shadow-xs space-y-4">
           {/* Header Status Bar */}
-          <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 text-xs">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-100 text-xs">
             <span className="font-semibold text-slate-800 flex items-center gap-1.5 text-[11px] sm:text-xs">
               <ShieldCheck className="w-3.5 h-3.5 text-blue-600 shrink-0" />
               Production Gateway
@@ -147,58 +133,7 @@ export default function LoginPage() {
             </span>
           </div>
 
-          {/* Executive Role SSO Buttons */}
-          <div className="space-y-1.5">
-            <div className="flex items-center justify-between">
-              <label className="text-[10px] sm:text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">
-                Executive Single Sign-On (SSO):
-              </label>
-              <span className="text-[10px] text-blue-600 font-medium">Role Switch</span>
-            </div>
-            <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
-              <button
-                type="button"
-                onClick={() => handleQuickPersona('ciso')}
-                className="p-2 sm:p-2.5 rounded-lg bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-200 text-center transition-all group"
-              >
-                <div className="text-[11px] sm:text-xs font-bold text-slate-900 group-hover:text-blue-700">
-                  CISO
-                </div>
-                <div className="text-[9px] sm:text-[10px] text-slate-500 truncate">V. Malhotra</div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => handleQuickPersona('cfo')}
-                className="p-2 sm:p-2.5 rounded-lg bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-200 text-center transition-all group"
-              >
-                <div className="text-[11px] sm:text-xs font-bold text-slate-900 group-hover:text-blue-700">
-                  CFO
-                </div>
-                <div className="text-[9px] sm:text-[10px] text-slate-500 truncate">A. Deshmukh</div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => handleQuickPersona('risk_analyst')}
-                className="p-2 sm:p-2.5 rounded-lg bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-200 text-center transition-all group"
-              >
-                <div className="text-[11px] sm:text-xs font-bold text-slate-900 group-hover:text-blue-700">
-                  Risk Lead
-                </div>
-                <div className="text-[9px] sm:text-[10px] text-slate-500 truncate">R. Sharma</div>
-              </button>
-            </div>
-          </div>
-
-          <div className="relative flex items-center justify-center my-1">
-            <div className="border-t border-slate-100 w-full" />
-            <span className="bg-white px-2 text-[9px] sm:text-[10px] text-slate-400 font-mono uppercase absolute">
-              Or Use Account
-            </span>
-          </div>
-
-          {/* Mode Switcher Tabs */}
+          {/* Mode Switcher Tabs: Sign In vs Create Account */}
           <div className="grid grid-cols-2 bg-slate-100 p-0.5 rounded-lg text-xs font-medium text-slate-600">
             <button
               type="button"
@@ -207,7 +142,7 @@ export default function LoginPage() {
                 setLocalError(null);
                 clearError();
               }}
-              className={`py-1 rounded-md transition-all ${
+              className={`py-1.5 rounded-md transition-all ${
                 mode === 'signin'
                   ? 'bg-white text-slate-900 font-semibold shadow-xs'
                   : 'hover:text-slate-900'
@@ -222,7 +157,7 @@ export default function LoginPage() {
                 setLocalError(null);
                 clearError();
               }}
-              className={`py-1 rounded-md transition-all ${
+              className={`py-1.5 rounded-md transition-all ${
                 mode === 'signup'
                   ? 'bg-white text-slate-900 font-semibold shadow-xs'
                   : 'hover:text-slate-900'
@@ -278,8 +213,16 @@ export default function LoginPage() {
             <span>Continue with Google</span>
           </button>
 
+          {/* Divider */}
+          <div className="relative flex items-center justify-center my-1">
+            <div className="border-t border-slate-100 w-full" />
+            <span className="bg-white px-2 text-[9px] sm:text-[10px] text-slate-400 font-mono uppercase absolute">
+              Or Use Corporate Email
+            </span>
+          </div>
+
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-2.5 sm:space-y-3">
+          <form onSubmit={handleSubmit} className="space-y-3">
             {mode === 'signup' && (
               <>
                 <div>
@@ -293,7 +236,7 @@ export default function LoginPage() {
                       value={displayName}
                       onChange={(e) => setDisplayName(e.target.value)}
                       placeholder="e.g. Dr. Rohan Roy"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
                       required={mode === 'signup'}
                     />
                   </div>
@@ -301,14 +244,14 @@ export default function LoginPage() {
 
                 <div>
                   <label className="text-[11px] sm:text-xs font-medium text-slate-700 block mb-1">
-                    Executive Role
+                    Assign Executive Role
                   </label>
                   <div className="relative">
                     <Briefcase className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
                     <select
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
                     >
                       <option value="Chief Information Security Officer (CISO)">
                         Chief Information Security Officer (CISO)
@@ -339,7 +282,7 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@company.com"
-                  className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
                   required
                 />
               </div>
@@ -347,7 +290,7 @@ export default function LoginPage() {
 
             <div>
               <label className="text-[11px] sm:text-xs font-medium text-slate-700 block mb-1">
-                {mode === 'signup' ? 'Password (min 6 chars)' : 'Passcode / Password'}
+                {mode === 'signup' ? 'Password (min 6 characters)' : 'Security Password'}
               </label>
               <div className="relative">
                 <Lock className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
@@ -356,7 +299,7 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors font-mono"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors font-mono"
                   required
                 />
               </div>
@@ -365,21 +308,21 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="soft-btn-primary w-full py-2.5 text-xs font-semibold flex items-center justify-center gap-2 shadow-xs transition-all mt-1"
+              className="soft-btn-primary w-full py-2.5 text-xs font-semibold flex items-center justify-center gap-2 shadow-xs transition-all mt-2"
             >
               <span>
                 {loading
-                  ? 'Authenticating...'
+                  ? 'Verifying Credentials...'
                   : mode === 'signin'
                   ? 'Sign In to OptiRisk'
-                  : 'Register Account'}
+                  : 'Register Enterprise Account'}
               </span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </form>
 
-          <div className="text-center pt-1 text-[10px] sm:text-[11px] text-slate-400 font-mono">
-            Smart India Hackathon 2026 • SIH26105
+          <div className="text-center pt-2 text-[10px] text-slate-400 font-mono">
+            Titan Financial Group • 256-Bit Cryptographic Session
           </div>
         </div>
       </div>
