@@ -59,6 +59,11 @@ export default function Header() {
     router.push('/login');
   };
 
+  // Hide on public marketing landing or login screen
+  if (pathname === '/' || pathname === '/login') {
+    return null;
+  }
+
   return (
     <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/90 h-14 px-4 sm:px-6 flex items-center justify-between">
       {/* Brand Identity & Breadcrumb */}

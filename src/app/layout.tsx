@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { AuthProvider } from '@/context/AuthContext';
 import { DataProvider } from '@/context/DataContext';
+import AuthGuard from '@/components/AuthGuard';
 import DemoBanner from '@/components/DemoBanner';
 import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
@@ -23,15 +24,17 @@ export default function RootLayout({
       <body className="bg-background text-slate-800 min-h-screen flex flex-col font-sans antialiased selection:bg-blue-100 selection:text-blue-900">
         <AuthProvider>
           <DataProvider>
-            <DemoBanner />
-            <Header />
-            <div className="flex-1 flex overflow-hidden">
-              <Sidebar />
-              <main className="flex-1 overflow-y-auto min-h-[calc(100vh-6rem)] pb-24 lg:pb-8 bg-slate-50/60">
-                {children}
-              </main>
-            </div>
-            <MobileNavBar />
+            <AuthGuard>
+              <DemoBanner />
+              <Header />
+              <div className="flex-1 flex overflow-hidden">
+                <Sidebar />
+                <main className="flex-1 overflow-y-auto min-h-[calc(100vh-6rem)] pb-24 lg:pb-8 bg-slate-50/60">
+                  {children}
+                </main>
+              </div>
+              <MobileNavBar />
+            </AuthGuard>
           </DataProvider>
         </AuthProvider>
       </body>

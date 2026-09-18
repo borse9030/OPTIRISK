@@ -93,16 +93,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             avatar,
           });
         } else {
-          // If no active Firebase user, check local storage for demo session
+          // If no active Firebase user, check local storage for user session
           const stored = localStorage.getItem('optirisk_auth_user');
           if (stored) {
             try {
               setUser(JSON.parse(stored));
             } catch {
-              setUser(DEFAULT_USER);
+              setUser(null);
             }
           } else {
-            setUser(DEFAULT_USER);
+            setUser(null);
           }
         }
         setLoading(false);
@@ -110,16 +110,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       return () => unsubscribe();
     } else {
-      // Local fallback mode when Firebase environment keys are not yet provided
+      // Local fallback mode when Firebase keys are pending
       const stored = localStorage.getItem('optirisk_auth_user');
       if (stored) {
         try {
           setUser(JSON.parse(stored));
         } catch {
-          setUser(DEFAULT_USER);
+          setUser(null);
         }
       } else {
-        setUser(DEFAULT_USER);
+        setUser(null);
       }
       setLoading(false);
     }

@@ -1,7 +1,17 @@
+'use client';
+
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import { ShieldCheck } from 'lucide-react';
 
 export default function DemoBanner() {
+  const pathname = usePathname();
+
+  // Hide on public marketing landing or login screen
+  if (pathname === '/' || pathname === '/login') {
+    return null;
+  }
+
   return (
     <div className="bg-slate-100/90 border-b border-slate-200/80 px-3 sm:px-4 py-1 text-xs text-slate-600 flex items-center justify-between">
       <div className="flex items-center gap-2">
