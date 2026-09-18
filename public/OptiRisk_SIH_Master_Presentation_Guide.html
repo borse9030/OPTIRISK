@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OptiRisk - SIH Master Pitch Deck & Feature Navigation Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #060913;
+      --bg-card: #0d1322;
+      --bg-card-subtle: #121a30;
+      --border: #1e293b;
+      --border-bright: #334155;
+      --primary: #06b6d4;
+      --primary-glow: rgba(6, 182, 212, 0.15);
+      --secondary: #6366f1;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.55;
+      font-size: 13.5px;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 14mm 14mm 14mm 14mm;
+    }
+
+    @media print {
+      body {
+        background-color: #060913 !important;
+        color: #f8fafc !important;
+      }
+      .page-break {
+        page-break-before: always;
+        break-before: page;
+      }
+      .avoid-break {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+
+    /* Cover Page */
+    .cover {
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--border-bright);
+      background: radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.12) 0%, transparent 50%),
+                  radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
+                  var(--bg-card);
+      border-radius: 20px;
+      padding: 56px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #06b6d4, #6366f1, #10b981);
+    }
+
+    .badge-sih {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.35);
+      border-radius: 999px;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .cover h1 {
+      font-size: 46px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #ffffff 40%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+
+    .cover .subtitle {
+      font-size: 18px;
+      color: #94a3b8;
+      font-weight: 400;
+      max-width: 680px;
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .meta-card {
+      background: rgba(18, 26, 48, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .meta-card .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .meta-card .val {
+      font-size: 14px;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+
+    .cover-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* Section Styles */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 36px 0 20px 0;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-num {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #000;
+      font-weight: 800;
+      font-size: 13px;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #f8fafc;
+    }
+
+    .section-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    /* Cards & Layout */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    /* Feature Item Card */
+    .feature-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--primary);
+      position: relative;
+    }
+
+    .feature-box.amber { border-left-color: var(--accent-amber); }
+    .feature-box.emerald { border-left-color: var(--accent-emerald); }
+    .feature-box.purple { border-left-color: var(--secondary); }
+    .feature-box.rose { border-left-color: var(--accent-rose); }
+
+    .feature-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .feature-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .feature-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .route-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      background: rgba(18, 26, 48, 0.9);
+      border: 1px solid var(--border-bright);
+      padding: 3px 10px;
+      border-radius: 6px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .badge.cyan { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
+    .badge.green { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge.amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge.purple { background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.3); }
+
+    .feature-desc {
+      color: #cbd5e1;
+      font-size: 13.5px;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .pitch-callout {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 12px 0;
+    }
+
+    .pitch-callout .pitch-head {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #fbbf24;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+
+    .pitch-callout .pitch-text {
+      color: #fef08a;
+      font-size: 13px;
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .action-item {
+      font-size: 12px;
+    }
+
+    .action-item strong {
+      color: var(--primary);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 12.5px;
+    }
+
+    th {
+      background: #111827;
+      color: var(--primary);
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border-bright);
+    }
+
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      color: #cbd5e1;
+    }
+
+    tr:nth-child(even) td {
+      background: rgba(17, 24, 39, 0.4);
+    }
+
+    /* Checklist & Code */
+    .checklist {
+      list-style: none;
+      margin: 10px 0;
+    }
+
+    .checklist li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 8px;
+      color: #cbd5e1;
+      font-size: 13px;
+    }
+
+    .checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent-emerald);
+      font-weight: 800;
+    }
+
+    .code-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      background: rgba(0,0,0,0.3);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #38bdf8;
+    }
+
+    /* Timeline */
+    .timeline-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .timeline-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--primary);
+      min-width: 65px;
+      padding-top: 2px;
+    }
+
+    .timeline-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      flex-grow: 1;
+    }
+
+    .timeline-content h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .timeline-content p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- COVER PAGE -->
+    <div class="cover">
+      <div>
+        <div class="badge-sih">
+          <span>⚡</span> SMART INDIA HACKATHON (SIH) • MASTER JURY BRIEF & DECK
+        </div>
+        <h1>OptiRisk</h1>
+        <div class="subtitle">
+          Continuous Cyber Risk Quantification (CRQ) & Algorithmic Capital Allocation Platform for Banks, Enterprises, and Critical Infrastructure.
+        </div>
+      </div>
+
+      <div>
+        <div class="cover-meta-grid">
+          <div class="meta-card">
+            <div class="label">Primary Innovation</div>
+            <div class="val">FAIR™ Stochastic Loss Modeling + Knapsack ROI Optimization</div>
+          </div>
+          <div class="meta-card">
+            <div class="label">Target Sector</div>
+            <div class="val">Banking, FinTech, Financial Institutions & Critical National Infra</div>
+          </div>
+          <div class="meta-card">
+            <div class="label">Compliance Engine</div>
+            <div class="val">RBI Cyber Security Framework, SEBI CSCRF, CERT-In & NIST 2.0</div>
+          </div>
+          <div class="meta-card">
+            <div class="label">Platform Architecture</div>
+            <div class="val">Next.js 14 (App Router) + Firebase Enterprise RBAC + Monte Carlo Engine</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-footer">
+        <div><strong>Project ID:</strong> SIH-OPTIRISK-2024 • Enterprise Production Standard</div>
+        <div><strong>Live Platform:</strong> http://localhost:3000 • Repository: borse9030/OPTIRISK</div>
+      </div>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 1: THE CORE PROBLEM & EXECUTIVE PITCH -->
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <div class="section-title">The Billion-Dollar Disconnect (Problem & Solution)</div>
+    </div>
+
+    <div class="section-desc">
+      Why traditional cybersecurity risk assessment fails Indian banks, and how OptiRisk delivers the quantitative standard required by modern regulatory frameworks.
+    </div>
+
+    <div class="grid-2 avoid-break">
+      <div class="card" style="border-top: 3px solid var(--accent-rose);">
+        <h3 style="color: var(--accent-rose); font-size: 15px; font-weight: 800; margin-bottom: 10px;">
+          ❌ The Legacy Problem in Banks
+        </h3>
+        <ul class="checklist">
+          <li><strong>Vague Heatmaps:</strong> Risk teams present arbitrary "Red, Amber, Green" matrices. A CFO cannot insure or budget against "Red".</li>
+          <li><strong>CVE Alert Fatigue:</strong> Scanners flag 4,000+ CVEs. CISOs have no mathematical formula to know which flaw exposes the most dollars.</li>
+          <li><strong>Blind Security Spending:</strong> Budgets are spent based on vendor marketing rather than mathematically proven risk reduction ROI.</li>
+          <li><strong>Regulatory Penalty Risk:</strong> RBI, SEBI, and CERT-In demand empirical Cyber Risk Quantification and board-level reporting.</li>
+        </ul>
+      </div>
+
+      <div class="card" style="border-top: 3px solid var(--accent-emerald);">
+        <h3 style="color: var(--accent-emerald); font-size: 15px; font-weight: 800; margin-bottom: 10px;">
+          ✓ The OptiRisk Breakthrough
+        </h3>
+        <ul class="checklist">
+          <li><strong>Dollar-Denominated Loss:</strong> Translates technical CVEs and threat vectors into exact Expected Annual Loss ($ / ₹) with 95% confidence intervals.</li>
+          <li><strong>Stochastic FAIR™ Modeling:</strong> Evaluates Threat Event Frequency (TEF), Vulnerability Exploitability, and Primary/Secondary Loss Magnitude.</li>
+          <li><strong>Algorithmic Portfolio Optimizer:</strong> Employs constrained Knapsack optimization to allocate capital to controls that maximize Risk Reduction ROI.</li>
+          <li><strong>Automated Regulatory Alignment:</strong> 100% mapped to RBI CSF, SEBI CSCRF, DPDP Act 2023, and NIST CSF 2.0.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pitch-callout avoid-break">
+      <div class="pitch-head">🏆 The 30-Second Elevator Pitch for SIH Invigilators</div>
+      <div class="pitch-text">
+        "Respected Judges, technical security teams speak in CVEs and CVSS scores, while the Board of Directors and CFOs speak in Rupees, Dollars, and ROI. OptiRisk bridges this gap. We translate cybersecurity vulnerabilities into exact financial loss distributions using the Open FAIR model and 10,000 Monte Carlo iterations. Then, our optimizer algorithm tells the bank exactly where to invest every rupee to achieve maximum risk reduction."
+      </div>
+    </div>
+
+    <!-- SECTION 2: ARCHITECTURE & TECHNICAL STACK -->
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <div class="section-title">End-to-End System Architecture</div>
+    </div>
+
+    <div class="card avoid-break">
+      <table style="margin: 0;">
+        <thead>
+          <tr>
+            <th>Layer</th>
+            <th>Technology</th>
+            <th>Engineering Responsibility</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Presentation & UI</strong></td>
+            <td>Next.js 14 App Router, React 18, Tailwind CSS, Lucide Icons, Recharts</td>
+            <td>High-performance responsive dashboard, real-time loss exceedance curves, 5x5 dynamic risk heatmaps.</td>
+          </tr>
+          <tr>
+            <td><strong>Authentication & Gateway</strong></td>
+            <td>Firebase Auth, Firestore, Strict Next.js Client AuthGuard</td>
+            <td>Enterprise Role-Based Access Control (CISO, CFO, Risk Lead, SecOps Analyst) with gateway route protection.</td>
+          </tr>
+          <tr>
+            <td><strong>Quantitative Engine</strong></td>
+            <td>Stochastic Monte Carlo Engine (10,000 runs), Open FAIR™ Model</td>
+            <td>Calculates Threat Event Frequency (TEF), Vulnerability (Vulnerability Likelihood), Loss Magnitude, and VaR (95th percentile).</td>
+          </tr>
+          <tr>
+            <td><strong>Capital Optimizer</strong></td>
+            <td>Pareto Frontier & Bounded Knapsack Optimization Algorithm</td>
+            <td>Maximizes Delta Risk Reduction subject to CISO budget constraints: $\max \sum \Delta \text{Loss}_i$ subject to $\sum \text{Cost}_i \le \text{Budget}$.</td>
+          </tr>
+          <tr>
+            <td><strong>AI Cyber Copilot</strong></td>
+            <td>LLM-driven Cyber Analyst with Prompt Engineering & Risk Taxonomy</td>
+            <td>Instant natural language risk querying, automated Board brief synthesis, and remediation roadmap generation.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: COMPLETE FEATURE NAVIGATION GUIDE -->
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div class="section-title">Master Feature Navigation Guide & Screen-by-Screen Pitch</div>
+    </div>
+
+    <div class="section-desc">
+      Use this exact roadmap during your demonstration. Every single screen includes the navigation route, what to click, and the exact explanation to deliver to the invigilators.
+    </div>
+
+    <!-- 1. LANDING PAGE -->
+    <div class="feature-box cyan avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">1. Public Landing & Interactive ROI Simulator</div>
+          <span class="route-pill">/</span>
+        </div>
+        <span class="badge cyan">Public Experience</span>
+      </div>
+      <div class="feature-desc">
+        The public enterprise gateway. Features animated metric counters, live cyber threat stats, interactive feature showcase tabs, and a real-time budget simulator widget.
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>Where to Navigate:</strong>
+          Click the OptiRisk logo or navigate to <code>http://localhost:3000/</code>.
+        </div>
+        <div class="action-item">
+          <strong>What to Click/Interact:</strong>
+          Drag the <em>"Interactive Cyber Budget Allocation Simulator"</em> slider to adjust budget from $100k to $1M and watch the risk reduction calculate live!
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ What to Say to the Judges</div>
+        <div class="pitch-text">
+          "Notice here on our public portal, we immediately demonstrate value with an interactive risk simulator. When an enterprise CFO slides the budget bar, our live algorithm recalculates loss reduction dynamically, showing an average Return on Security Investment (ROSI) of 340%."
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. LOGIN & RBAC -->
+    <div class="feature-box purple avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">2. Enterprise Authentication & Role Assignment Gateway</div>
+          <span class="route-pill">/login</span>
+        </div>
+        <span class="badge purple">Security & RBAC</span>
+      </div>
+      <div class="feature-desc">
+        Enterprise authentication powered by Firebase. Includes dual tabs ("Sign In" and "Create Account") with specialized executive roles: CISO, CFO, Risk Lead, and SecOps Analyst.
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>Where to Navigate:</strong>
+          Click <em>"Sign In"</em> in the header or go to <code>/login</code>.
+        </div>
+        <div class="action-item">
+          <strong>What to Click/Interact:</strong>
+          Click one of the 4 role badges (CISO, CFO, Risk Lead, SecOps). It pre-fills production credentials. Click <em>"Sign In to Platform"</em> to enter.
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ What to Say to the Judges</div>
+        <div class="pitch-text">
+          "Cyber risk governance requires strict segregation of duties. We implemented Role-Based Access Control: a CFO views financial exposure and capital allocation, while a CISO analyzes threat capabilities and control efficacy. No unauthenticated user can bypass our gateway."
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. EXECUTIVE DASHBOARD -->
+    <div class="feature-box emerald avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">3. Executive Cyber Risk Dashboard</div>
+          <span class="route-pill">/dashboard</span>
+        </div>
+        <span class="badge green">Executive Tier</span>
+      </div>
+      <div class="feature-desc">
+        The C-Suite command center. Displays Total Annualized Loss Expectancy (ALE), Enterprise Risk Score, Return on Security Investment (ROSI), the 5x5 dynamic risk heatmap, and the loss exceedance curve.
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>Where to Navigate:</strong>
+          Click <em>"Dashboard"</em> in the sidebar or go to <code>/dashboard</code>.
+        </div>
+        <div class="action-item">
+          <strong>What to Click/Interact:</strong>
+          Point out the 4 KPI cards, hover over the 5x5 Risk Matrix cells to show the count of vulnerabilities, and show the Loss Exceedance Probability chart.
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ What to Say to the Judges</div>
+        <div class="pitch-text">
+          "This is the core dashboard that modern bank boards need. Instead of qualitative guesses, we present our Annualized Loss Exposure—in this scenario $2.4 Million—backed by a 95% Value-at-Risk confidence interval. The Loss Exceedance curve models black swan events with mathematically rigorous percentile metrics."
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. THREAT MODELING -->
+    <div class="feature-box amber avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">4. Threat Scenario Modeling & TTPs</div>
+          <span class="route-pill">/threats</span>
+        </div>
+        <span class="badge amber">Threat Intelligence</span>
+      </div>
+      <div class="feature-desc">
+        Quantifies adversary attack scenarios (Ransomware, SWIFT Fraud, Cloud Account Takeover, Insider Threat) mapped directly to MITRE ATT&CK techniques with Threat Event Frequency (TEF).
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>Where to Navigate:</strong>
+          Click <em>"Threats"</em> in sidebar or visit <code>/threats</code>.
+        </div>
+        <div class="action-item">
+          <strong>What to Click/Interact:</strong>
+          Click on threat scenario cards (e.g. <em>Ransomware Double Extortion</em>) to inspect Threat Event Frequency (TEF) and Threat Capability (TCap) metrics.
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ What to Say to the Judges</div>
+        <div class="pitch-text">
+          "Under the FAIR framework, risk is the product of Loss Event Frequency and Loss Magnitude. Here, we model real threat capabilities against our existing defensive controls to derive empirical attack success likelihood."
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- 5. VULNERABILITY MANAGEMENT -->
+    <div class="feature-box rose avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">5. Financial-Impact Vulnerability Prioritization</div>
+          <span class="route-pill">/vulnerabilities</span>
+        </div>
+        <span class="badge amber">Vulnerability Ops</span>
+      </div>
+      <div class="feature-desc">
+        Shifts vulnerability remediation from static CVSS scores to monetary risk ranking. Prioritizes CVEs based on the financial loss exposure of the affected asset.
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>Where to Navigate:</strong>
+          Click <em>"Vulnerabilities"</em> in sidebar or visit <code>/vulnerabilities</code>.
+        </div>
+        <div class="action-item">
+          <strong>What to Click/Interact:</strong>
+          Show CVEs tagged with their Dollar Exposure (e.g., CVE-2023-38606 exposing $820K) vs technical CVSS score.
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ What to Say to the Judges</div>
+        <div class="pitch-text">
+          "Standard security teams waste weeks fixing CVSS 9.8 bugs on non-critical test servers while ignoring CVSS 7.5 bugs on core payment APIs. OptiRisk contextualizes CVEs by asset criticality, ensuring engineers patch the flaws that actually protect money first."
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. ASSETS & VALUE AT RISK -->
+    <div class="feature-box cyan avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">6. Critical Asset Value at Risk (VaR)</div>
+          <span class="route-pill">/assets</span>
+        </div>
+        <span class="badge cyan">Asset Inventory</span>
+      </div>
+      <div class="feature-desc">
+        Comprehensive inventory of digital and cyber banking assets (Core Banking, SWIFT Connector, Customer KYC Vault, Mobile App API) with assigned financial asset valuation.
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>Where to Navigate:</strong>
+          Click <em>"Assets"</em> in sidebar or visit <code>/assets</code>.
+        </div>
+        <div class="action-item">
+          <strong>What to Click/Interact:</strong>
+          Filter by asset criticality (Tier 1 Mission Critical) and view the replacement value, operational downtime cost per hour, and regulatory data fines.
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ What to Say to the Judges</div>
+        <div class="pitch-text">
+          "Without asset valuation, cyber risk quantification is impossible. OptiRisk categorizes assets across three loss dimensions: direct asset replacement, operational disruption cost per hour, and statutory DPDP/GDPR privacy penalties."
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. DEFENSIVE CONTROLS -->
+    <div class="feature-box purple avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">7. Defensive Controls Catalog & Efficacy Matrix</div>
+          <span class="route-pill">/controls</span>
+        </div>
+        <span class="badge purple">Defensive Catalog</span>
+      </div>
+      <div class="feature-desc">
+        Catalog of preventive and detective security controls (MFA, EDR, Microsegmentation, DLP, Zero Trust) with annual licensing cost and measured risk reduction efficacy.
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>Where to Navigate:</strong>
+          Click <em>"Controls"</em> in sidebar or visit <code>/controls</code>.
+        </div>
+        <div class="action-item">
+          <strong>What to Click/Interact:</strong>
+          Review control status (Implemented vs Candidate), cost per user/endpoint, and technical efficacy percentage against ransomware and exfiltration.
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ What to Say to the Judges</div>
+        <div class="pitch-text">
+          "Every security control has a dollar cost and an efficacy rate. This catalog provides the baseline parameters that feed into our algorithmic investment optimizer."
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. INVESTMENT OPTIMIZER -->
+    <div class="feature-box emerald avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">8. Cyber Investment & Budget Optimizer (FLAGSHIP)</div>
+          <span class="route-pill">/optimizer</span>
+        </div>
+        <span class="badge green">Flagship Algorithm</span>
+      </div>
+      <div class="feature-desc">
+        Solves the constrained Knapsack problem to determine the mathematically optimal portfolio of security investments that produces the greatest risk reduction within a given budget.
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>Where to Navigate:</strong>
+          Click <em>"Optimizer"</em> in sidebar or visit <code>/optimizer</code>.
+        </div>
+        <div class="action-item">
+          <strong>What to Click/Interact:</strong>
+          Drag the <em>"Available Cybersecurity Budget"</em> slider (e.g. from $300,000 to $750,000) and click <em>"Run Optimization"</em>. Show how controls are dynamically selected!
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ What to Say to the Judges</div>
+        <div class="pitch-text">
+          "Judges, this is our core algorithmic innovation! In a real bank, the CISO has a strict budget cap. OptiRisk computes the Pareto-optimal frontier. As I adjust the budget slider, our Knapsack solver determines the exact combination of controls that eliminates the maximum financial exposure per dollar invested."
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- 9. MONTE CARLO SIMULATOR -->
+    <div class="feature-box cyan avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">9. Interactive Monte Carlo Risk Simulation Engine</div>
+          <span class="route-pill">/simulator</span>
+        </div>
+        <span class="badge cyan">Stochastic Math</span>
+      </div>
+      <div class="feature-desc">
+        Executes 10,000 to 50,000 randomized stochastic iterations combining log-normal loss magnitude distributions with Poisson threat arrival rates to generate empirical VaR curves.
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>Where to Navigate:</strong>
+          Click <em>"Simulator"</em> in sidebar or visit <code>/simulator</code>.
+        </div>
+        <div class="action-item">
+          <strong>What to Click/Interact:</strong>
+          Select <em>"10,000 Iterations"</em>, configure the Confidence Interval (95%), and click <em>"Execute Monte Carlo Simulation"</em>. Watch the histogram update in real time!
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ What to Say to the Judges</div>
+        <div class="pitch-text">
+          "Cyberattacks are low-frequency, high-severity events. Deterministic math fails here. Our Monte Carlo engine simulates 10,000 random enterprise years in milliseconds, plotting the exact probability of exceeding any given loss threshold."
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. REGULATORY COMPLIANCE -->
+    <div class="feature-box amber avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">10. Multi-Regulatory Compliance Matrix (RBI / SEBI / CERT-In)</div>
+          <span class="route-pill">/compliance</span>
+        </div>
+        <span class="badge amber">Indian Regulatory</span>
+      </div>
+      <div class="feature-desc">
+        Automated compliance tracker mapping technical controls to RBI Cyber Security Framework (CSF) for Scheduled Commercial Banks, SEBI CSCRF, CERT-In directions, and NIST CSF 2.0.
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>Where to Navigate:</strong>
+          Click <em>"Compliance"</em> in sidebar or visit <code>/compliance</code>.
+        </div>
+        <div class="action-item">
+          <strong>What to Click/Interact:</strong>
+          Toggle tabs between <em>"RBI Cyber Security Framework"</em>, <em>"SEBI CSCRF"</em>, and <em>"NIST CSF 2.0"</em> to show audit readiness scores and remediation gaps.
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ What to Say to the Judges</div>
+        <div class="pitch-text">
+          "Indian banks face severe regulatory penalties for non-compliance. OptiRisk continuously evaluates technical telemetry against the RBI Master Directions on Cyber Security. What takes audit consulting firms 6 weeks is rendered in OptiRisk in under 2 seconds."
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. RISK INTELLIGENCE -->
+    <div class="feature-box purple avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">11. Geopolitical Threat Intelligence Radar</div>
+          <span class="route-pill">/risk-intelligence</span>
+        </div>
+        <span class="badge purple">Threat Radar</span>
+      </div>
+      <div class="feature-desc">
+        Aggregates global threat intelligence feeds, active APT threat actor profiles (Lazarus, FIN7, LockBit), targeted banking sectors, and live indicators of compromise (IoCs).
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>Where to Navigate:</strong>
+          Click <em>"Risk Intelligence"</em> in sidebar or visit <code>/risk-intelligence</code>.
+        </div>
+        <div class="action-item">
+          <strong>What to Click/Interact:</strong>
+          Review active adversary campaigns targeting financial services and inspect real-time threat feed updates.
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ What to Say to the Judges</div>
+        <div class="pitch-text">
+          "Our risk calculations are not static. The Risk Intelligence radar ingests global threat telemetry to dynamically calibrate threat frequency parameters when new zero-day campaigns emerge."
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. GLOBAL ATTACK MAP -->
+    <div class="feature-box cyan avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">12. Global Attack Surface & Threat Vector Map</div>
+          <span class="route-pill">/map</span>
+        </div>
+        <span class="badge cyan">Geospatial Ops</span>
+      </div>
+      <div class="feature-desc">
+        Geospatial visualization of enterprise infrastructure, distributed bank branches, cloud data centers (AWS Mumbai, Azure India), and incoming cyber attack vectors.
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>Where to Navigate:</strong>
+          Click <em>"Attack Map"</em> in sidebar or visit <code>/map</code>.
+        </div>
+        <div class="action-item">
+          <strong>What to Click/Interact:</strong>
+          Inspect distributed nodes and regional threat traffic telemetry originating across international jurisdictions.
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ What to Say to the Judges</div>
+        <div class="pitch-text">
+          "Provides complete geographic situational awareness. Executive teams can immediately see cross-border cyber threats targeting regional bank endpoints."
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- 13. AI CYBER COPILOT -->
+    <div class="feature-box emerald avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">13. Autonomous AI Cyber Analyst & Copilot</div>
+          <span class="route-pill">/analyst</span>
+        </div>
+        <span class="badge green">GenAI Innovation</span>
+      </div>
+      <div class="feature-desc">
+        Generative AI security analyst assistant. Synthesizes enterprise threat telemetry, explains quantitative loss metrics in boardroom English, and generates executive briefing notes.
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>Where to Navigate:</strong>
+          Click <em>"AI Analyst"</em> in sidebar or visit <code>/analyst</code>.
+        </div>
+        <div class="action-item">
+          <strong>What to Click/Interact:</strong>
+          Click one of the suggested prompts (e.g. <em>"Explain our primary ransomware loss drivers"</em> or <em>"Summarize our Q3 RBI compliance gap"</em>) and watch the AI respond!
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ What to Say to the Judges</div>
+        <div class="pitch-text">
+          "Non-technical Board members shouldn't need a PhD in cryptography to understand their exposure. Our AI Copilot allows a CFO to ask plain questions and receive immediate, mathematically grounded strategic recommendations."
+        </div>
+      </div>
+    </div>
+
+    <!-- 14. REPORTS -->
+    <div class="feature-box amber avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">14. Executive & Regulatory Audit Reporting</div>
+          <span class="route-pill">/reports</span>
+        </div>
+        <span class="badge amber">Audit Ready</span>
+      </div>
+      <div class="feature-desc">
+        One-click generation of Board of Directors executive briefing decks, RBI supervisory audit documentation, and cyber insurance underwriting filings.
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>Where to Navigate:</strong>
+          Click <em>"Reports"</em> in sidebar or visit <code>/reports</code>.
+        </div>
+        <div class="action-item">
+          <strong>What to Click/Interact:</strong>
+          Show the available report packages (Board Pack, RBI Compliance Audit, Cyber Insurance Underwriting Dossier) and export buttons.
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ What to Say to the Judges</div>
+        <div class="pitch-text">
+          "At the end of the quarter, CISOs spend weeks formatting PowerPoint decks. OptiRisk automates the entire governance output into audit-grade compliance reports with a single click."
+        </div>
+      </div>
+    </div>
+
+    <!-- 15. SETTINGS -->
+    <div class="feature-box purple avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">15. Governance Settings & Risk Appetite Thresholds</div>
+          <span class="route-pill">/settings</span>
+        </div>
+        <span class="badge purple">Governance</span>
+      </div>
+      <div class="feature-desc">
+        Configures organizational risk appetite thresholds, currency localization (INR / USD), alert triggers, and telemetry integration hooks.
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>Where to Navigate:</strong>
+          Click <em>"Settings"</em> in sidebar or visit <code>/settings</code>.
+        </div>
+        <div class="action-item">
+          <strong>What to Click/Interact:</strong>
+          Adjust the <em>"Maximum Acceptable Loss Threshold"</em> and demonstrate how alerts fire when simulations exceed the Board's defined risk tolerance.
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ What to Say to the Judges</div>
+        <div class="pitch-text">
+          "Every enterprise has a different risk tolerance. Here, executive leadership defines the bank's statutory Loss Appetite, and the platform continuously monitors compliance against this threshold."
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 4: 5-MINUTE PRESENTATION SCRIPT -->
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <div class="section-title">The Winning 5-Minute SIH Presentation Script</div>
+    </div>
+
+    <div class="section-desc">
+      Practice this exact 5-minute schedule with your team before presenting to the SIH jury.
+    </div>
+
+    <div class="timeline-item avoid-break">
+      <div class="timeline-time">0:00 - 1:00</div>
+      <div class="timeline-content">
+        <h4>Minute 1: The Problem & Executive Gateway</h4>
+        <p><strong>Screen:</strong> Public Home (<code>/</code>) and Login (<code>/login</code>)<br>
+        <strong>Script:</strong> "Hello Judges. India's banking sector faces unprecedented cyber threats, yet CISOs and CFOs cannot agree on risk because security speaks in CVEs while the board speaks in money. With OptiRisk, we solve this fundamental disconnect. Here is our role-based authentication gateway ensuring strict RBAC for CISO, CFO, and Risk Leads."</p>
+      </div>
+    </div>
+
+    <div class="timeline-item avoid-break">
+      <div class="timeline-time">1:00 - 2:00</div>
+      <div class="timeline-content">
+        <h4>Minute 2: Executive Quantification Dashboard</h4>
+        <p><strong>Screen:</strong> Dashboard (<code>/dashboard</code>)<br>
+        <strong>Script:</strong> "Once logged in as CISO, we see our quantified cyber exposure: $2.4M in Expected Annual Loss with a 340% ROSI. Our 5x5 dynamic heatmap and loss exceedance curve show both expected daily losses and 95th-percentile black-swan events using the Open FAIR methodology."</p>
+      </div>
+    </div>
+
+    <div class="timeline-item avoid-break">
+      <div class="timeline-time">2:00 - 3:00</div>
+      <div class="timeline-content">
+        <h4>Minute 3: The Algorithmic Optimizer & Monte Carlo Engine (THE CLIMAX)</h4>
+        <p><strong>Screen:</strong> Optimizer (<code>/optimizer</code>) and Simulator (<code>/simulator</code>)<br>
+        <strong>Script:</strong> "Now to our flagship innovation: The Cyber Investment Optimizer. When I adjust our available budget slider to $500k, our Knapsack optimization algorithm automatically selects the optimal bundle of controls to eliminate the maximum risk per dollar. In the simulator, we run 10,000 Monte Carlo iterations in real-time to validate the post-mitigation risk curve."</p>
+      </div>
+    </div>
+
+    <div class="timeline-item avoid-break">
+      <div class="timeline-time">3:00 - 4:00</div>
+      <div class="timeline-content">
+        <h4>Minute 4: RBI / SEBI Regulatory Compliance Matrix</h4>
+        <p><strong>Screen:</strong> Compliance (<code>/compliance</code>)<br>
+        <strong>Script:</strong> "For banking institutions in India, compliance is mandatory. Our platform maps all defensive controls directly to the RBI Cyber Security Framework, SEBI guidelines, and CERT-In directions, showing instant gap analysis and audit readiness."</p>
+      </div>
+    </div>
+
+    <div class="timeline-item avoid-break">
+      <div class="timeline-time">4:00 - 5:00</div>
+      <div class="timeline-content">
+        <h4>Minute 5: AI Cyber Copilot, Reports & Conclusion</h4>
+        <p><strong>Screen:</strong> AI Analyst (<code>/analyst</code>) and Reports (<code>/reports</code>)<br>
+        <strong>Script:</strong> "Finally, our AI Copilot allows any executive to query risk exposure in plain English, and our reporting module produces one-click Board-ready dossiers. OptiRisk transforms cybersecurity from a cost center into an optimized, mathematically validated financial investment. Thank you, we are ready for your questions."</p>
+      </div>
+    </div>
+
+    <!-- SECTION 5: INVIGILATOR Q&A DEFENSE -->
+    <div class="section-header avoid-break">
+      <div class="section-num">05</div>
+      <div class="section-title">Invigilator Q&A Defense Matrix (Top Questions Judges Will Ask)</div>
+    </div>
+
+    <div class="card avoid-break">
+      <table style="margin: 0;">
+        <thead>
+          <tr>
+            <th style="width: 35%;">Judge Question</th>
+            <th>The Bulletproof Winning Answer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>"How do you get loss numbers when cyber breach data is confidential?"</strong></td>
+            <td>"We use the Open FAIR™ framework with calibrated beta-PERT probability distributions. Rather than guessing a single number, we ask for 90% confidence ranges (minimum, most likely, maximum) calibrated against industry data (Verizon DBIR & Ponemon Institute cost of data breach studies), which the Monte Carlo engine samples across 10,000 iterations."</td>
+          </tr>
+          <tr>
+            <td><strong>"How is OptiRisk different from vulnerability scanners like Nessus or Qualys?"</strong></td>
+            <td>"Nessus and Qualys are discovery tools—they spit out thousands of technical CVEs without business context. OptiRisk sits above them as a quantitative decision engine: we multiply vulnerability exploitability by asset financial value to tell the CFO what financial loss is at stake and which fixes yield the highest ROI."</td>
+          </tr>
+          <tr>
+            <td><strong>"Does this align with Indian regulatory frameworks?"</strong></td>
+            <td>"Yes! We explicitly built automated compliance mapping for the <strong>RBI Cyber Security Framework for Banks</strong>, <strong>SEBI Cybersecurity & Cyber Resilience Framework (CSCRF)</strong>, and India's <strong>DPDP Act 2023</strong> statutory fine schedules."</td>
+          </tr>
+          <tr>
+            <td><strong>"What is the mathematical algorithm behind the optimizer?"</strong></td>
+            <td>"We model capital allocation as a 0/1 Bounded Knapsack Problem solved via Dynamic Programming and greedy Pareto-optimal approximation. The objective function maximizes Total Risk Reduction subject to the budget constraint $\sum c_i x_i \le B$, where $c_i$ is control cost and $x_i \in \{0, 1\}$."</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FOOTER SUMMARY -->
+    <div style="text-align: center; margin-top: 40px; padding: 20px; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 12px;">
+      OptiRisk Platform • Continuous Cyber Risk Quantification & Investment Optimization • SIH Master Documentation Deck
+    </div>
+
+  </div>
+</body>
+</html>

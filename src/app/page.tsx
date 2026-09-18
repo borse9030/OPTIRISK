@@ -22,6 +22,7 @@ import {
   Globe,
   DollarSign,
   TrendingUp,
+  FileText,
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { formatINR } from '@/lib/riskEngine';
@@ -118,6 +119,17 @@ export default function LandingPage() {
 
         {/* Action Button: Authenticated vs Unauthenticated */}
         <div className="flex items-center gap-2">
+          <a
+            href="/OptiRisk_SIH_Master_Presentation_Guide.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Download SIH Master Presentation Guide & Feature Deck (PDF)"
+            className="text-xs font-semibold text-cyan-800 bg-cyan-50 hover:bg-cyan-100 border border-cyan-300 px-3.5 py-2 rounded-lg transition-all hidden sm:flex items-center gap-1.5"
+          >
+            <FileText className="w-3.5 h-3.5 text-cyan-600" />
+            <span>SIH Guide (PDF)</span>
+          </a>
+
           {user ? (
             <Link
               href="/dashboard"
@@ -187,6 +199,16 @@ export default function LandingPage() {
           >
             <SlidersHorizontal className="w-4 h-4 text-blue-600" />
             <span>Interactive ROI Simulator</span>
+          </a>
+
+          <a
+            href="/OptiRisk_SIH_Master_Presentation_Guide.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-50 to-blue-50 hover:from-cyan-100 hover:to-blue-100 text-cyan-950 text-sm font-semibold border border-cyan-300 shadow-2xs flex items-center justify-center gap-2 transition-all"
+          >
+            <FileText className="w-4 h-4 text-cyan-600" />
+            <span>SIH Jury Deck (PDF)</span>
           </a>
         </div>
 

@@ -12,6 +12,7 @@ import {
   ChevronRight,
   LogOut,
   ShieldCheck,
+  FileText,
 } from 'lucide-react';
 import { useData, USER_PERSONAS, UserPersona } from '@/context/DataContext';
 import { useAuth } from '@/context/AuthContext';
@@ -104,6 +105,18 @@ export default function Header() {
         >
           <RefreshCw className="w-3.5 h-3.5" />
         </button>
+
+        {/* SIH Master Pitch Deck & PDF Guide Button */}
+        <a
+          href="/OptiRisk_SIH_Master_Presentation_Guide.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Open SIH Master Pitch Deck & Feature Navigation Guide (PDF)"
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-50 hover:bg-cyan-100 border border-cyan-200 text-xs font-semibold text-cyan-800 transition-colors shadow-sm"
+        >
+          <FileText className="w-3.5 h-3.5 text-cyan-600" />
+          <span className="hidden sm:inline">SIH PDF Guide</span>
+        </a>
 
         {/* User Profile & Persona Switcher Dropdown */}
         <div className="relative">
