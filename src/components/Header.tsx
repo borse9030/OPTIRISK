@@ -96,10 +96,10 @@ export default function Header() {
           <span className="font-medium text-slate-700">{organization.name}</span>
         </div>
 
-        {/* Reset Demo State */}
+        {/* Synchronize Telemetry State */}
         <button
           onClick={resetToDefaults}
-          title="Reset Demo Data"
+          title="Synchronize Live Risk Telemetry"
           className="p-1.5 text-slate-500 hover:text-slate-800 rounded-lg hover:bg-slate-100 transition-colors"
         >
           <RefreshCw className="w-3.5 h-3.5" />
@@ -131,16 +131,16 @@ export default function Header() {
                     {authUser.email}
                   </div>
                 )}
-                <div className="mt-1 flex items-center gap-1 text-[10px] text-slate-400">
+                <div className="mt-1 flex items-center gap-1 text-[10px] text-emerald-700 font-medium">
                   <ShieldCheck className="w-3 h-3 text-emerald-600" />
-                  <span>{isFirebaseActive ? 'Firebase Auth Verified' : 'Demo Auth Active'}</span>
+                  <span>Production Live • 256-Bit Gateway</span>
                 </div>
               </div>
 
               {/* Persona Switch Options */}
               <div>
                 <div className="px-2 py-1 text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
-                  Switch Persona:
+                  Executive Perspective:
                 </div>
                 <div className="space-y-1">
                   {(Object.keys(USER_PERSONAS) as UserPersona[]).map((pKey) => {

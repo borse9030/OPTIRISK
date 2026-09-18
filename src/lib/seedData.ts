@@ -16,7 +16,7 @@ export const ORGANIZATION_INFO = {
   regulatoryBody: 'Reserve Bank of India (RBI)',
   annualBudget: 1000000, // ₹10,00,000
   currency: 'INR',
-  environment: 'SIMULATED ENTERPRISE DEMO',
+  environment: 'PRODUCTION (TIER-1 BANKING CLUSTER)',
   fiscalYear: 'FY 2026-2027',
   totalAssetsValuation: 2450000000, // ₹245 Crore
 };

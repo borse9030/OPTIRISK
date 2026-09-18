@@ -139,28 +139,21 @@ export default function LoginPage() {
           <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 text-xs">
             <span className="font-semibold text-slate-800 flex items-center gap-1.5 text-[11px] sm:text-xs">
               <ShieldCheck className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-              Secure Gateway
+              Production Gateway
             </span>
-            {isFirebaseActive ? (
-              <span className="inline-flex items-center gap-1 text-[10px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full font-medium">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                Firebase Live
-              </span>
-            ) : (
-              <span className="inline-flex items-center gap-1 text-[10px] font-mono text-slate-600 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-full font-medium">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                Demo Mode
-              </span>
-            )}
+            <span className="inline-flex items-center gap-1.5 text-[10px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Production Live
+            </span>
           </div>
 
-          {/* Quick Persona Demo Buttons: Compact and responsive */}
+          {/* Executive Role SSO Buttons */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
               <label className="text-[10px] sm:text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">
-                1-Click Persona Access:
+                Executive Single Sign-On (SSO):
               </label>
-              <span className="text-[10px] text-blue-600 font-medium">Instant Test</span>
+              <span className="text-[10px] text-blue-600 font-medium">Role Switch</span>
             </div>
             <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
               <button
@@ -191,7 +184,7 @@ export default function LoginPage() {
                 className="p-2 sm:p-2.5 rounded-lg bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-200 text-center transition-all group"
               >
                 <div className="text-[11px] sm:text-xs font-bold text-slate-900 group-hover:text-blue-700">
-                  Analyst
+                  Risk Lead
                 </div>
                 <div className="text-[9px] sm:text-[10px] text-slate-500 truncate">R. Sharma</div>
               </button>

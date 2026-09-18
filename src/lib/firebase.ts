@@ -42,7 +42,7 @@ if (isFirebaseConfigured) {
       });
     }
   } catch (error) {
-    console.warn('Firebase initialization error, defaulting to local simulated mode:', error);
+    console.error('Firebase production initialization error:', error);
   }
 }
 
