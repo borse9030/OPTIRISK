@@ -36,24 +36,24 @@ export default function KPICard({
   }
 
   return (
-    <div className="bg-white border border-slate-200/90 rounded-xl p-4 sm:p-5 flex flex-col justify-between shadow-xs hover:border-slate-300 hover:shadow-sm transition-all">
+    <div className="bg-white border border-slate-200/90 rounded-xl p-3.5 sm:p-5 flex flex-col justify-between shadow-xs hover:border-slate-300 hover:shadow-sm transition-all">
       <div>
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+        <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+          <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-slate-500 truncate">
             {title}
           </span>
-          <div className="p-1.5 rounded-lg bg-slate-50 border border-slate-100 text-slate-600">
-            <Icon className="w-4 h-4 text-slate-600" />
+          <div className="p-1 sm:p-1.5 rounded-lg bg-slate-50 border border-slate-100 text-slate-600 shrink-0">
+            <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-600" />
           </div>
         </div>
 
-        <div className="flex items-baseline gap-2 mb-1">
-          <span className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 metric-tabular font-mono">
+        <div className="flex items-baseline flex-wrap gap-1.5 mb-1">
+          <span className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-slate-900 metric-tabular font-mono">
             {value}
           </span>
           {badge && (
             <span
-              className={`text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full border ${badgeClasses}`}
+              className={`text-[9px] sm:text-[10px] font-semibold uppercase px-1.5 sm:px-2 py-0.5 rounded-full border shrink-0 ${badgeClasses}`}
             >
               {badge}
             </span>
@@ -61,27 +61,27 @@ export default function KPICard({
         </div>
 
         {subtitle && (
-          <p className="text-xs text-slate-600 mt-1 font-normal leading-relaxed">
+          <p className="text-[11px] sm:text-xs text-slate-600 mt-0.5 font-normal leading-relaxed line-clamp-2">
             {subtitle}
           </p>
         )}
       </div>
 
-      <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px]">
+      <div className="mt-2.5 pt-2 sm:mt-3 sm:pt-2.5 border-t border-slate-100 flex items-center justify-between gap-1 text-[10px] sm:text-[11px]">
         {trend ? (
           <span
-            className={`font-medium flex items-center gap-1 ${
+            className={`font-medium flex items-center gap-1 shrink-0 ${
               trendPositive ? 'text-emerald-700' : 'text-rose-700'
             }`}
           >
             {trend}
           </span>
         ) : (
-          <span className="text-slate-400 text-[10px]">Deterministic Model</span>
+          <span className="text-slate-400 text-[10px] shrink-0">Deterministic</span>
         )}
 
         {helpText && (
-          <span className="text-slate-500 text-[10px] truncate max-w-[140px]" title={helpText}>
+          <span className="text-slate-500 text-[10px] text-right truncate max-w-[110px] sm:max-w-[150px]" title={helpText}>
             {helpText}
           </span>
         )}

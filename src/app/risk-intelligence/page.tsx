@@ -179,15 +179,15 @@ export default function RiskIntelligencePage() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <div className="relative">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 w-full sm:w-auto">
+            <div className="relative flex-1 sm:w-64">
               <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
               <input
                 type="text"
-                placeholder="Search risks..."
+                placeholder="Search risks, assets..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500"
+                className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500"
               />
             </div>
 
@@ -195,7 +195,7 @@ export default function RiskIntelligencePage() {
               value={severityFilter}
               onChange={(e) => setSeverityFilter(e.target.value)}
               aria-label="Filter by severity"
-              className="px-2.5 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-blue-500"
+              className="w-full sm:w-auto px-2.5 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-blue-500"
             >
               <option value="All">All Severities</option>
               <option value="Critical">Critical</option>
@@ -206,7 +206,76 @@ export default function RiskIntelligencePage() {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
+        {/* Mobile View: Touch-Friendly Risk Cards */}
+        <div className="grid grid-cols-1 gap-3 md:hidden">
+          {filteredRisks.map((r) => (
+            <div
+              key={r.id}
+              className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2.5 text-xs"
+            >
+              <div className="flex items-start justify-between gap-2">
+                <div>
+                  <div className="font-semibold text-slate-900 text-xs leading-snug">{r.title}</div>
+                  {r.vulnerabilityId && (
+                    <span className="text-[10px] font-mono text-blue-700 font-medium">
+                      {r.vulnerabilityId}
+                    </span>
+                  )}
+                </div>
+                <SeverityBadge severity={r.severity} />
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 text-[11px] text-slate-600">
+                <div>
+                  <span className="text-slate-400 block text-[10px]">Target Asset</span>
+                  <span className="font-medium text-slate-800 truncate block">{r.assetName}</span>
+                </div>
+                <div>
+                  <span className="text-slate-400 block text-[10px]">Threat Vector</span>
+                  <span className="font-medium text-slate-800 truncate block">{r.threatName}</span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-2 pt-2 border-t border-slate-200/80 text-center font-mono text-[11px]">
+                <div className="p-1.5 rounded bg-white border border-slate-200">
+                  <span className="text-[9px] text-slate-400 block">Likelihood</span>
+                  <span className="font-bold text-slate-700">L{r.likelihood}/5</span>
+                </div>
+                <div className="p-1.5 rounded bg-white border border-slate-200">
+                  <span className="text-[9px] text-slate-400 block">Impact</span>
+                  <span className="font-bold text-slate-700">I{r.impact}/5</span>
+                </div>
+                <div className="p-1.5 rounded bg-white border border-slate-200">
+                  <span className="text-[9px] text-slate-400 block">Score</span>
+                  <span className="font-bold text-blue-700">{r.riskScore}/100</span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between pt-1 border-t border-slate-200/80">
+                <span className="text-slate-500 text-[11px]">Annual Loss (EAL):</span>
+                <span className="font-mono font-bold text-slate-900 text-xs">
+                  {formatINR(r.expectedAnnualLoss)}
+                </span>
+              </div>
+
+              <div className="p-2 rounded-lg bg-blue-50/60 border border-blue-100 flex items-center justify-between text-[11px]">
+                <span className="text-blue-900 font-medium truncate max-w-[200px]">
+                  {r.recommendedControlName}
+                </span>
+                <Link
+                  href="/optimizer"
+                  className="text-blue-700 font-semibold flex items-center gap-1 shrink-0 hover:underline"
+                >
+                  <span>Remediate</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop View: Full Data Table */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse">
             <thead>
               <tr className="border-b border-slate-200 bg-slate-50/80 text-slate-600 font-semibold text-[11px]">

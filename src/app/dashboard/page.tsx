@@ -70,7 +70,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Top 5 Key Metric Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-2.5 sm:gap-4">
         <KPICard
           title="Cyber Risk Score"
           value={`${liveMetrics.riskScore} / 100`}
@@ -86,13 +86,13 @@ export default function DashboardPage() {
         <KPICard
           title="Expected Annual Loss"
           value={formatINR(liveMetrics.eal)}
-          subtitle="Annual Loss Exposure (ALE)"
+          subtitle="Annual Loss Exposure"
           badge="ANNUAL"
           badgeType="warning"
           icon={IndianRupee}
           trend="₹38.4L baseline"
           trendPositive={false}
-          helpText="Probability × financial damage"
+          helpText="Probability × damage"
         />
 
         <KPICard
@@ -102,7 +102,7 @@ export default function DashboardPage() {
           badge={`Rem: ${formatINR(liveMetrics.remainingBudget)}`}
           badgeType="info"
           icon={Wallet}
-          helpText="Fiscal limit approved by board"
+          helpText="Board approved limit"
         />
 
         <KPICard
@@ -114,20 +114,22 @@ export default function DashboardPage() {
           icon={TrendingDown}
           trend="+18.4% efficiency"
           trendPositive={true}
-          helpText="Loss avoided via optimal rebalancing"
+          helpText="Loss avoided via Knapsack"
         />
 
-        <KPICard
-          title="ROSI Multiplier"
-          value={`${liveMetrics.rosi.toFixed(1)}×`}
-          subtitle="Return on Security Spend"
-          badge="BENCHMARK"
-          badgeType="success"
-          icon={Layers}
-          trend="₹16.7L saved"
-          trendPositive={true}
-          helpText="Net loss avoided per ₹1 invested"
-        />
+        <div className="col-span-2 lg:col-span-1 h-full">
+          <KPICard
+            title="ROSI Multiplier"
+            value={`${liveMetrics.rosi.toFixed(1)}×`}
+            subtitle="Return on Security Spend"
+            badge="BENCHMARK"
+            badgeType="success"
+            icon={Layers}
+            trend="₹16.7L saved"
+            trendPositive={true}
+            helpText="Net loss avoided per ₹1 spent"
+          />
+        </div>
       </div>
 
       {/* Before vs After Hero Benchmark */}

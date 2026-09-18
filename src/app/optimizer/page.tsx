@@ -77,10 +77,10 @@ export default function InvestmentOptimizerPage() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2.5 self-start sm:self-auto">
+          <div className="flex items-center gap-2 self-start sm:self-auto w-full sm:w-auto">
             <button
               onClick={resetToDefaults}
-              className="p-2.5 rounded-lg bg-slate-50 text-slate-600 hover:text-slate-900 border border-slate-200 transition-colors"
+              className="p-2.5 rounded-lg bg-slate-50 text-slate-600 hover:text-slate-900 border border-slate-200 transition-colors shrink-0"
               title="Reset to status quo"
             >
               <RotateCcw className="w-4 h-4" />
@@ -89,41 +89,41 @@ export default function InvestmentOptimizerPage() {
             <button
               onClick={handleRunOptimizer}
               disabled={isOptimizing}
-              className="soft-btn-primary px-5 py-2.5 text-xs font-semibold flex items-center gap-2 transition-all shadow-xs active:scale-95"
+              className="soft-btn-primary flex-1 sm:flex-none px-4 sm:px-5 py-2.5 text-xs font-semibold flex items-center justify-center gap-2 transition-all shadow-xs active:scale-95"
             >
               <TrendingDown className="w-4 h-4" />
-              <span>{isOptimizing ? 'Computing Optimal Mix...' : 'Run Optimization Engine'}</span>
+              <span>{isOptimizing ? 'Computing...' : 'Run Optimizer'}</span>
             </button>
           </div>
         </div>
 
         {/* 3-Step Guided Roadmap */}
-        <div className="mt-5 pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div className="mt-5 pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 text-xs">
           <div className="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-50 border border-slate-100">
             <span className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center font-bold text-[10px] text-blue-700 shrink-0">
               1
             </span>
-            <span className="text-slate-700 font-medium">Set total annual budget ceiling</span>
+            <span className="text-slate-700 font-medium">Set annual budget ceiling</span>
           </div>
 
           <div className="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-50 border border-slate-100">
             <span className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center font-bold text-[10px] text-blue-700 shrink-0">
               2
             </span>
-            <span className="text-slate-700 font-medium">Run marginal-gain knapsack engine</span>
+            <span className="text-slate-700 font-medium">Run Knapsack optimization</span>
           </div>
 
           <div className="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-50 border border-slate-100">
             <span className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center font-bold text-[10px] text-blue-700 shrink-0">
               3
             </span>
-            <span className="text-slate-700 font-medium">Review explainable reasons & ROSI</span>
+            <span className="text-slate-700 font-medium">Review explainable ROSI</span>
           </div>
         </div>
       </div>
 
       {/* Step 1: Budget Ceiling & Balance Bar */}
-      <div className="bg-white border border-slate-200/90 rounded-xl p-5 sm:p-6 space-y-4 shadow-xs">
+      <div className="bg-white border border-slate-200/90 rounded-xl p-4 sm:p-6 space-y-4 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
@@ -134,13 +134,13 @@ export default function InvestmentOptimizerPage() {
             </div>
           </div>
 
-          {/* Clean budget presets */}
-          <div className="flex flex-wrap items-center gap-1.5">
+          {/* Clean budget presets: 2x2 grid on mobile, row on tablet/desktop */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 w-full sm:w-auto">
             {BUDGET_PRESETS.map((p) => (
               <button
                 key={p.value}
                 onClick={() => setBudget(p.value)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${
+                className={`px-3 py-2 text-center rounded-lg text-xs font-mono transition-all ${
                   budget === p.value
                     ? 'bg-blue-600 text-white font-semibold shadow-xs'
                     : 'bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200'
@@ -200,7 +200,7 @@ export default function InvestmentOptimizerPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Left: Sliders (7 cols) */}
         <div className="lg:col-span-7 space-y-4">
-          <div className="bg-white border border-slate-200/90 rounded-xl p-5 space-y-4 shadow-xs">
+          <div className="bg-white border border-slate-200/90 rounded-xl p-4 sm:p-5 space-y-4 shadow-xs">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div>
                 <h3 className="text-sm sm:text-base font-bold text-slate-900 tracking-tight">
@@ -210,7 +210,7 @@ export default function InvestmentOptimizerPage() {
                   Sliders reflect current spend vs. algorithm recommendation.
                 </p>
               </div>
-              <span className="text-[11px] font-mono text-slate-500">
+              <span className="text-[11px] font-mono text-slate-500 shrink-0">
                 {controls.length} Controls
               </span>
             </div>
@@ -225,25 +225,25 @@ export default function InvestmentOptimizerPage() {
                   <div
                     key={ctrl.id}
                     onClick={() => setSelectedControlForCurve(ctrl.id)}
-                    className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
+                    className={`p-3 sm:p-3.5 rounded-xl border transition-all cursor-pointer ${
                       isSelected
                         ? 'bg-blue-50/40 border-blue-300 shadow-xs'
                         : 'bg-slate-50/60 border-slate-200/80 hover:bg-slate-50'
                     }`}
                   >
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <div>
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 mb-2">
+                      <div className="flex items-center justify-between sm:justify-start gap-2">
                         <span className="text-xs font-bold text-slate-900">{ctrl.name}</span>
-                        <span className="text-[10px] text-slate-500 ml-2">
-                          Maturity L{ctrl.currentMaturity}/5
+                        <span className="text-[10px] text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded font-mono">
+                          L{ctrl.currentMaturity}/5
                         </span>
                       </div>
 
-                      <div className="flex items-baseline gap-2 font-mono text-xs">
+                      <div className="flex items-center justify-between sm:justify-end gap-2 font-mono text-xs">
                         <span className="text-slate-900 font-bold">{formatINR(currentSpend)}</span>
                         {recSpend !== currentSpend && (
-                          <span className="text-[11px] text-blue-700 font-medium">
-                            (Rec: {formatINR(recSpend)})
+                          <span className="text-[10px] text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-100 font-medium">
+                            Rec: {formatINR(recSpend)}
                           </span>
                         )}
                       </div>

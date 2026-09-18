@@ -78,29 +78,33 @@ export default function RiskTrendChart() {
             <XAxis
               dataKey="date"
               stroke="#94A3B8"
-              fontSize={11}
+              fontSize={10}
               tickLine={false}
               axisLine={{ stroke: '#E2E8F0' }}
+              minTickGap={14}
+              tickFormatter={(v: string) => v.replace(' ago', '')}
             />
             {/* Left Y Axis: Risk Score 0 - 100 */}
             <YAxis
               yAxisId="score"
               domain={[0, 100]}
               stroke="#94A3B8"
-              fontSize={11}
+              fontSize={10}
               tickLine={false}
               axisLine={false}
               tickFormatter={(v) => `${v}`}
+              width={25}
             />
             {/* Right Y Axis: EAL in ₹ Lakhs */}
             <YAxis
               yAxisId="eal"
               orientation="right"
               stroke="#0284C7"
-              fontSize={11}
+              fontSize={10}
               tickLine={false}
               axisLine={false}
               tickFormatter={(v) => `₹${v}L`}
+              width={35}
             />
             <Tooltip
               contentStyle={{
@@ -119,7 +123,7 @@ export default function RiskTrendChart() {
               }}
             />
             <Legend
-              wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }}
+              wrapperStyle={{ fontSize: '11px', paddingTop: '8px' }}
               iconType="circle"
             />
             <Area
@@ -140,13 +144,13 @@ export default function RiskTrendChart() {
               stroke="#0284C7"
               strokeWidth={2}
               strokeDasharray="4 4"
-              dot={{ r: 4, fill: '#0284C7', strokeWidth: 0 }}
+              dot={{ r: 3, fill: '#0284C7', strokeWidth: 0 }}
             />
           </ComposedChart>
         </ResponsiveContainer>
       </div>
 
-      <div className="mt-3 flex items-center justify-between text-[11px] text-slate-500 border-t border-slate-100 pt-2">
+      <div className="mt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-[10px] sm:text-[11px] text-slate-500 border-t border-slate-100 pt-2">
         <span>Continuous Risk Quantification Engine</span>
         <span className="font-mono text-emerald-700 font-medium">Trajectory: -13 pts over 90 days</span>
       </div>
