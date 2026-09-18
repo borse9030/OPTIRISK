@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
   Lock,
@@ -12,7 +13,7 @@ import {
   X,
   ShieldCheck,
   CheckCircle2,
-  Sparkles,
+  UserCheck,
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useData, UserPersona } from '@/context/DataContext';
@@ -21,6 +22,7 @@ export default function LoginPage() {
   const router = useRouter();
   const { switchPersona } = useData();
   const {
+    user,
     loginWithEmail,
     signupWithEmail,
     loginWithGoogle,
@@ -83,37 +85,61 @@ export default function LoginPage() {
     setLoading(true);
     setTimeout(() => {
       router.push('/dashboard');
-    }, 250);
+    }, 200);
   };
 
   const activeError = localError || error;
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 py-10">
-      <div className="w-full max-w-md space-y-5">
+    <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center px-4 sm:px-6 py-6 sm:py-10">
+      <div className="w-full max-w-md space-y-4">
         {/* Brand Header */}
-        <div className="text-center space-y-2">
-          <div className="inline-flex w-12 h-12 rounded-xl bg-blue-600 items-center justify-center text-white font-mono font-bold text-xl shadow-sm mb-1">
+        <div className="text-center space-y-1.5">
+          <div className="inline-flex w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-600 items-center justify-center text-white font-mono font-bold text-lg sm:text-xl shadow-xs mb-0.5">
             O
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900 uppercase">
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 uppercase">
             OptiRisk
           </h1>
-          <p className="text-xs text-blue-700 font-medium tracking-wide">
+          <p className="text-[11px] sm:text-xs text-blue-700 font-medium tracking-wide">
             Cyber Risk Quantification & Optimization Platform
           </p>
-          <div className="text-[11px] text-slate-500">
-            Titan Financial Group • Tier-1 Enterprise Gateway
+          <div className="text-[10px] sm:text-[11px] text-slate-400">
+            Titan Financial Group • Enterprise Authentication
           </div>
         </div>
 
+        {/* Already Logged In Session Notification */}
+        {user && (
+          <div className="bg-white rounded-xl p-3 border border-blue-200 shadow-xs flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="w-7 h-7 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center text-xs font-bold text-blue-700 shrink-0">
+                {user.avatar}
+              </div>
+              <div className="min-w-0">
+                <div className="text-xs font-semibold text-slate-900 truncate">
+                  Active Session: {user.displayName}
+                </div>
+                <div className="text-[10px] text-slate-500 truncate">{user.role}</div>
+              </div>
+            </div>
+            <Link
+              href="/dashboard"
+              className="soft-btn-primary px-3 py-1.5 text-xs font-semibold flex items-center gap-1 shrink-0 shadow-xs"
+            >
+              <span>Dashboard</span>
+              <ArrowRight className="w-3 h-3" />
+            </Link>
+          </div>
+        )}
+
         {/* Card Container */}
-        <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm space-y-5">
+        <div className="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 shadow-xs space-y-4">
           {/* Header Status Bar */}
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100 text-xs">
-            <span className="font-semibold text-slate-800 flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-blue-600" />
-              Firebase Authentication
+          <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 text-xs">
+            <span className="font-semibold text-slate-800 flex items-center gap-1.5 text-[11px] sm:text-xs">
+              <ShieldCheck className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+              Secure Gateway
             </span>
             {isFirebaseActive ? (
               <span className="inline-flex items-center gap-1 text-[10px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full font-medium">
@@ -128,59 +154,59 @@ export default function LoginPage() {
             )}
           </div>
 
-          {/* Quick Persona Demo Buttons */}
-          <div className="space-y-2">
+          {/* Quick Persona Demo Buttons: Compact and responsive */}
+          <div className="space-y-1.5">
             <div className="flex items-center justify-between">
-              <label className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">
+              <label className="text-[10px] sm:text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">
                 1-Click Persona Access:
               </label>
               <span className="text-[10px] text-blue-600 font-medium">Instant Test</span>
             </div>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
               <button
                 type="button"
                 onClick={() => handleQuickPersona('ciso')}
-                className="p-2.5 rounded-lg bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-200 text-center transition-all group"
+                className="p-2 sm:p-2.5 rounded-lg bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-200 text-center transition-all group"
               >
-                <div className="text-xs font-bold text-slate-900 group-hover:text-blue-700">
+                <div className="text-[11px] sm:text-xs font-bold text-slate-900 group-hover:text-blue-700">
                   CISO
                 </div>
-                <div className="text-[10px] text-slate-500 truncate">V. Malhotra</div>
+                <div className="text-[9px] sm:text-[10px] text-slate-500 truncate">V. Malhotra</div>
               </button>
 
               <button
                 type="button"
                 onClick={() => handleQuickPersona('cfo')}
-                className="p-2.5 rounded-lg bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-200 text-center transition-all group"
+                className="p-2 sm:p-2.5 rounded-lg bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-200 text-center transition-all group"
               >
-                <div className="text-xs font-bold text-slate-900 group-hover:text-blue-700">
+                <div className="text-[11px] sm:text-xs font-bold text-slate-900 group-hover:text-blue-700">
                   CFO
                 </div>
-                <div className="text-[10px] text-slate-500 truncate">A. Deshmukh</div>
+                <div className="text-[9px] sm:text-[10px] text-slate-500 truncate">A. Deshmukh</div>
               </button>
 
               <button
                 type="button"
                 onClick={() => handleQuickPersona('risk_analyst')}
-                className="p-2.5 rounded-lg bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-200 text-center transition-all group"
+                className="p-2 sm:p-2.5 rounded-lg bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-200 text-center transition-all group"
               >
-                <div className="text-xs font-bold text-slate-900 group-hover:text-blue-700">
+                <div className="text-[11px] sm:text-xs font-bold text-slate-900 group-hover:text-blue-700">
                   Analyst
                 </div>
-                <div className="text-[10px] text-slate-500 truncate">R. Sharma</div>
+                <div className="text-[9px] sm:text-[10px] text-slate-500 truncate">R. Sharma</div>
               </button>
             </div>
           </div>
 
-          <div className="relative flex items-center justify-center">
+          <div className="relative flex items-center justify-center my-1">
             <div className="border-t border-slate-100 w-full" />
-            <span className="bg-white px-2 text-[10px] text-slate-400 font-mono uppercase absolute">
-              Or Authenticate with Account
+            <span className="bg-white px-2 text-[9px] sm:text-[10px] text-slate-400 font-mono uppercase absolute">
+              Or Use Account
             </span>
           </div>
 
           {/* Mode Switcher Tabs */}
-          <div className="grid grid-cols-2 bg-slate-100 p-1 rounded-lg text-xs font-medium text-slate-600">
+          <div className="grid grid-cols-2 bg-slate-100 p-0.5 rounded-lg text-xs font-medium text-slate-600">
             <button
               type="button"
               onClick={() => {
@@ -188,7 +214,7 @@ export default function LoginPage() {
                 setLocalError(null);
                 clearError();
               }}
-              className={`py-1.5 rounded-md transition-all ${
+              className={`py-1 rounded-md transition-all ${
                 mode === 'signin'
                   ? 'bg-white text-slate-900 font-semibold shadow-xs'
                   : 'hover:text-slate-900'
@@ -203,7 +229,7 @@ export default function LoginPage() {
                 setLocalError(null);
                 clearError();
               }}
-              className={`py-1.5 rounded-md transition-all ${
+              className={`py-1 rounded-md transition-all ${
                 mode === 'signup'
                   ? 'bg-white text-slate-900 font-semibold shadow-xs'
                   : 'hover:text-slate-900'
@@ -215,8 +241,8 @@ export default function LoginPage() {
 
           {/* Error Alert */}
           {activeError && (
-            <div className="p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start gap-2 animate-in fade-in">
-              <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+            <div className="p-2.5 rounded-lg bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start gap-2 animate-in fade-in">
+              <AlertCircle className="w-3.5 h-3.5 text-rose-600 shrink-0 mt-0.5" />
               <div className="flex-1 text-[11px] leading-relaxed">{activeError}</div>
               <button
                 type="button"
@@ -236,9 +262,9 @@ export default function LoginPage() {
             type="button"
             onClick={handleGoogleSignIn}
             disabled={loading}
-            className="w-full flex items-center justify-center gap-2.5 py-2 px-3 border border-slate-200 rounded-lg text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 hover:border-slate-300 transition-all shadow-xs"
+            className="w-full flex items-center justify-center gap-2 py-2 px-3 border border-slate-200 rounded-lg text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 hover:border-slate-300 transition-all shadow-xs"
           >
-            <svg className="w-4 h-4" viewBox="0 0 24 24">
+            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24">
               <path
                 fill="#4285F4"
                 d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"
@@ -260,36 +286,36 @@ export default function LoginPage() {
           </button>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-3.5">
+          <form onSubmit={handleSubmit} className="space-y-2.5 sm:space-y-3">
             {mode === 'signup' && (
               <>
                 <div>
-                  <label className="text-xs font-medium text-slate-700 block mb-1">
+                  <label className="text-[11px] sm:text-xs font-medium text-slate-700 block mb-1">
                     Full Name
                   </label>
                   <div className="relative">
-                    <User className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+                    <User className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
                     <input
                       type="text"
                       value={displayName}
                       onChange={(e) => setDisplayName(e.target.value)}
                       placeholder="e.g. Dr. Rohan Roy"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-9 pr-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
                       required={mode === 'signup'}
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-xs font-medium text-slate-700 block mb-1">
+                  <label className="text-[11px] sm:text-xs font-medium text-slate-700 block mb-1">
                     Executive Role
                   </label>
                   <div className="relative">
-                    <Briefcase className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+                    <Briefcase className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
                     <select
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-9 pr-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
                     >
                       <option value="Chief Information Security Officer (CISO)">
                         Chief Information Security Officer (CISO)
@@ -310,36 +336,34 @@ export default function LoginPage() {
             )}
 
             <div>
-              <label className="text-xs font-medium text-slate-700 block mb-1">
+              <label className="text-[11px] sm:text-xs font-medium text-slate-700 block mb-1">
                 Corporate Email
               </label>
               <div className="relative">
-                <Mail className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+                <Mail className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@company.com"
-                  className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-9 pr-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
                   required
                 />
               </div>
             </div>
 
             <div>
-              <div className="flex items-center justify-between mb-1">
-                <label className="text-xs font-medium text-slate-700">
-                  {mode === 'signup' ? 'Create Password (min 6 chars)' : 'Passcode / Password'}
-                </label>
-              </div>
+              <label className="text-[11px] sm:text-xs font-medium text-slate-700 block mb-1">
+                {mode === 'signup' ? 'Password (min 6 chars)' : 'Passcode / Password'}
+              </label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+                <Lock className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-9 pr-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors font-mono"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors font-mono"
                   required
                 />
               </div>
@@ -348,7 +372,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="soft-btn-primary w-full py-2.5 text-xs font-semibold flex items-center justify-center gap-2 shadow-xs transition-all"
+              className="soft-btn-primary w-full py-2.5 text-xs font-semibold flex items-center justify-center gap-2 shadow-xs transition-all mt-1"
             >
               <span>
                 {loading
@@ -361,7 +385,7 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <div className="text-center pt-2 text-[11px] text-slate-400 font-mono">
+          <div className="text-center pt-1 text-[10px] sm:text-[11px] text-slate-400 font-mono">
             Smart India Hackathon 2026 • SIH26105
           </div>
         </div>
