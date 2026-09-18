@@ -123,11 +123,22 @@ export default function LandingPage() {
             href="/OptiRisk_SIH_Master_Presentation_Guide.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            title="Download SIH Master Presentation Guide & Feature Deck (PDF)"
-            className="text-xs font-semibold text-cyan-800 bg-cyan-50 hover:bg-cyan-100 border border-cyan-300 px-3.5 py-2 rounded-lg transition-all hidden sm:flex items-center gap-1.5"
+            title="Download SIH Master Presentation Guide (English PDF)"
+            className="text-xs font-semibold text-cyan-800 bg-cyan-50 hover:bg-cyan-100 border border-cyan-300 px-2.5 py-2 rounded-lg transition-all hidden md:flex items-center gap-1.5 shadow-2xs"
           >
             <FileText className="w-3.5 h-3.5 text-cyan-600" />
-            <span>SIH Guide (PDF)</span>
+            <span>SIH Deck (EN)</span>
+          </a>
+
+          <a
+            href="/OptiRisk_SIH_Master_Presentation_Guide_Hindi.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="डाउनलोड करें SIH मास्टर प्रेजेंटेशन गाइड (हिंदी PDF)"
+            className="text-xs font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 px-2.5 py-2 rounded-lg transition-all hidden sm:flex items-center gap-1.5 shadow-2xs"
+          >
+            <FileText className="w-3.5 h-3.5 text-emerald-600" />
+            <span>SIH गाइड (हिंदी)</span>
           </a>
 
           {user ? (
@@ -205,10 +216,20 @@ export default function LandingPage() {
             href="/OptiRisk_SIH_Master_Presentation_Guide.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-50 to-blue-50 hover:from-cyan-100 hover:to-blue-100 text-cyan-950 text-sm font-semibold border border-cyan-300 shadow-2xs flex items-center justify-center gap-2 transition-all"
+            className="w-full sm:w-auto px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-50 to-blue-50 hover:from-cyan-100 hover:to-blue-100 text-cyan-950 text-sm font-semibold border border-cyan-300 shadow-2xs flex items-center justify-center gap-2 transition-all"
           >
             <FileText className="w-4 h-4 text-cyan-600" />
-            <span>SIH Jury Deck (PDF)</span>
+            <span>SIH Deck (EN)</span>
+          </a>
+
+          <a
+            href="/OptiRisk_SIH_Master_Presentation_Guide_Hindi.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-50 to-teal-50 hover:from-emerald-100 hover:to-teal-100 text-emerald-950 text-sm font-semibold border border-emerald-300 shadow-2xs flex items-center justify-center gap-2 transition-all"
+          >
+            <FileText className="w-4 h-4 text-emerald-600" />
+            <span>SIH गाइड (हिंदी PDF)</span>
           </a>
         </div>
 

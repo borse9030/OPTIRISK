@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OptiRisk - SIH मास्टर प्रेजेंटेशन डेक एवं फीचर नेविगेशन गाइड (हिंदी संस्करण)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #060913;
+      --bg-card: #0d1322;
+      --bg-card-subtle: #121a30;
+      --border: #1e293b;
+      --border-bright: #334155;
+      --primary: #06b6d4;
+      --primary-glow: rgba(6, 182, 212, 0.15);
+      --secondary: #6366f1;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans Devanagari', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      font-size: 13.5px;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 14mm 14mm 14mm 14mm;
+    }
+
+    @media print {
+      body {
+        background-color: #060913 !important;
+        color: #f8fafc !important;
+      }
+      .page-break {
+        page-break-before: always;
+        break-before: page;
+      }
+      .avoid-break {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+
+    /* Cover Page */
+    .cover {
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--border-bright);
+      background: radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.12) 0%, transparent 50%),
+                  radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
+                  var(--bg-card);
+      border-radius: 20px;
+      padding: 56px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #06b6d4, #6366f1, #10b981);
+    }
+
+    .badge-sih {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.35);
+      border-radius: 999px;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .cover h1 {
+      font-size: 46px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 40%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+
+    .cover .subtitle {
+      font-size: 18px;
+      color: #94a3b8;
+      font-weight: 400;
+      max-width: 720px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .meta-card {
+      background: rgba(18, 26, 48, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .meta-card .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .meta-card .val {
+      font-size: 14px;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+
+    .cover-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* Section Styles */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 36px 0 20px 0;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-num {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #000;
+      font-weight: 800;
+      font-size: 13px;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: #f8fafc;
+    }
+
+    .section-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.65;
+    }
+
+    /* Cards & Layout */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    /* Feature Item Card */
+    .feature-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--primary);
+      position: relative;
+    }
+
+    .feature-box.amber { border-left-color: var(--accent-amber); }
+    .feature-box.emerald { border-left-color: var(--accent-emerald); }
+    .feature-box.purple { border-left-color: var(--secondary); }
+    .feature-box.rose { border-left-color: var(--accent-rose); }
+
+    .feature-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .feature-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .feature-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .route-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      background: rgba(18, 26, 48, 0.9);
+      border: 1px solid var(--border-bright);
+      padding: 3px 10px;
+      border-radius: 6px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .badge.cyan { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
+    .badge.green { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge.amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge.purple { background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.3); }
+
+    .feature-desc {
+      color: #cbd5e1;
+      font-size: 13.5px;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    .pitch-callout {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 12px 0;
+    }
+
+    .pitch-callout .pitch-head {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #fbbf24;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+
+    .pitch-callout .pitch-text {
+      color: #fef08a;
+      font-size: 13px;
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .action-item {
+      font-size: 12px;
+    }
+
+    .action-item strong {
+      color: var(--primary);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 12.5px;
+    }
+
+    th {
+      background: #111827;
+      color: var(--primary);
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border-bright);
+    }
+
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    tr:nth-child(even) td {
+      background: rgba(17, 24, 39, 0.4);
+    }
+
+    /* Checklist & Code */
+    .checklist {
+      list-style: none;
+      margin: 10px 0;
+    }
+
+    .checklist li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 8px;
+      color: #cbd5e1;
+      font-size: 13px;
+    }
+
+    .checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent-emerald);
+      font-weight: 800;
+    }
+
+    /* Timeline */
+    .timeline-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .timeline-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--primary);
+      min-width: 75px;
+      padding-top: 2px;
+    }
+
+    .timeline-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      flex-grow: 1;
+    }
+
+    .timeline-content h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .timeline-content p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- COVER PAGE -->
+    <div class="cover">
+      <div>
+        <div class="badge-sih">
+          <span>⚡</span> स्मार्ट इंडिया हैकथॉन (SIH) • मास्टर जूरी गाइड एवं संपूर्ण फीचर डेक
+        </div>
+        <h1>OptiRisk (ऑप्टिरिस्क)</h1>
+        <div class="subtitle">
+          बैंकों, वित्तीय संस्थानों और बड़े उद्यमों के लिए सतत साइबर जोखिम परिमाणीकरण (CRQ) एवं एल्गोरिथमिक बजट आवंटन प्लेटफॉर्म।
+        </div>
+      </div>
+
+      <div>
+        <div class="cover-meta-grid">
+          <div class="meta-card">
+            <div class="label">मुख्य तकनीकी नवाचार (Primary Innovation)</div>
+            <div class="val">FAIR™ सांख्यिकीय हानि मॉडलिंग + नैपसैक ROI ऑप्टिमाइज़र</div>
+          </div>
+          <div class="meta-card">
+            <div class="label">लक्षित क्षेत्र (Target Sector)</div>
+            <div class="val">बैंकिंग, फिनटेक, वित्तीय अवसंरचना (BFSI) एवं क्रिटिकल नेशनल इन्फ्रा</div>
+          </div>
+          <div class="meta-card">
+            <div class="label">नियामक अनुपालन (Compliance Engine)</div>
+            <div class="val">RBI साइबर सुरक्षा ढांचा, SEBI CSCRF, CERT-In एवं NIST CSF 2.0</div>
+          </div>
+          <div class="meta-card">
+            <div class="label">प्लेटफ़ॉर्म आर्किटेक्चर (Platform Stack)</div>
+            <div class="val">Next.js 14 + Firebase एंटरप्राइज RBAC + मॉन्टे कार्लो सिमुलेशन इंजन</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-footer">
+        <div><strong>प्रोजेक्ट आईडी:</strong> SIH-OPTIRISK-2024 • एंटरप्राइज प्रोडक्शन स्टैंडर्ड</div>
+        <div><strong>लाइव प्लेटफ़ॉर्म:</strong> http://localhost:3000 • रिपॉजिटरी: borse9030/OPTIRISK</div>
+      </div>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 1: THE CORE PROBLEM & EXECUTIVE PITCH -->
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <div class="section-title">मूल समस्या और ऑप्टिरिस्क का क्रांतिकारी समाधान (Problem & Solution)</div>
+    </div>
+
+    <div class="section-desc">
+      पारंपरिक साइबर सुरक्षा मूल्यांकन भारतीय बैंकों में क्यों विफल हो जाता है, और कैसे ऑप्टिरिस्क बोर्डरूम के लिए गणितीय व वित्तीय आधार प्रदान करता है।
+    </div>
+
+    <div class="grid-2 avoid-break">
+      <div class="card" style="border-top: 3px solid var(--accent-rose);">
+        <h3 style="color: var(--accent-rose); font-size: 15px; font-weight: 800; margin-bottom: 10px;">
+          ❌ बैंकों में मौजूदा पारंपरिक समस्याएं
+        </h3>
+        <ul class="checklist">
+          <li><strong>अस्पष्ट हीटमैप्स:</strong> सुरक्षा टीमें केवल "लाल, पीला, हरा" (High/Medium/Low) दिखाती हैं। एक बैंक का CFO "लाल रंग" के खिलाफ बीमा या बजट नहीं बना सकता।</li>
+          <li><strong>CVE अलर्ट की बाढ़:</strong> स्कैनर 4,000+ कमजोरियां निकालते हैं। CISO के पास यह जानने का कोई गणितीय तरीका नहीं होता कि किस खामी से कितने रुपयों का नुकसान होगा।</li>
+          <li><strong>अंधाधुंध बजट आवंटन:</strong> सुरक्षा बजट वैज्ञानिक विश्लेषण के बजाय वेंडर मार्केटिंग के आधार पर खर्च कर दिया जाता है।</li>
+          <li><strong>नियामक जुर्माना:</strong> RBI, SEBI और CERT-In अब ऑडिट में स्पष्ट मात्रात्मक (Quantitative) जोखिम रिपोर्टिंग अनिवार्य कर रहे हैं।</li>
+        </ul>
+      </div>
+
+      <div class="card" style="border-top: 3px solid var(--accent-emerald);">
+        <h3 style="color: var(--accent-emerald); font-size: 15px; font-weight: 800; margin-bottom: 10px;">
+          ✓ ऑप्टिरिस्क का वैज्ञानिक समाधान
+        </h3>
+        <ul class="checklist">
+          <li><strong>मुद्रा में जोखिम परिमाणीकरण:</strong> तकनीकी CVEs को 95% आत्मविश्वास अंतराल के साथ अपेक्षित वार्षिक वित्तीय हानि (Expected Annual Loss ₹/$) में बदलता है।</li>
+          <li><strong>FAIR™ सांख्यिकीय मॉडलिंग:</strong> खतरे की आवृत्ति (TEF), भेद्यता शोषण क्षमता (Exploitability), और प्राथमिक/द्वितीयक वित्तीय नुकसान का सटीक आकलन।</li>
+          <li><strong>एल्गोरिथमिक पूंजी ऑप्टिमाइज़र:</strong> कंस्ट्रेंड नैपसैक (Knapsack) एल्गोरिदम का उपयोग कर ऐसे सुरक्षा नियंत्रण चुनता है जो प्रति रुपये अधिकतम सुरक्षा लाभ (ROSI) दें।</li>
+          <li><strong>स्वचालित भारतीय अनुपालन:</strong> RBI CSF, SEBI CSCRF, DPDP अधिनियम 2023 और NIST CSF 2.0 से 100% मैप किया गया।</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pitch-callout avoid-break">
+      <div class="pitch-head">🏆 SIH जजों के लिए 30-सेकंड की सटीक एलिवेटर पिच (Hindi Pitch Script)</div>
+      <div class="pitch-text">
+        "आदरणीय जूरी महोदय, तकनीकी सुरक्षा टीमें CVEs और CVSS स्कोर की भाषा बोलती हैं, जबकि बैंक का निदेशक मंडल (Board) और CFO रुपयों, वित्तीय नुकसान और निवेश पर लाभ (ROI) की भाषा समझते हैं। ऑप्टिरिस्क इस बहुत बड़े अंतर को पाटता है। हम ओपन FAIR™ मॉडल और 10,000 मॉन्टे कार्लो सिमुलेशन के जरिए साइबर खतरों को सटीक वित्तीय नुकसान में बदलते हैं। फिर हमारा ऑप्टिमाइज़र एल्गोरिदम बैंक को यह बताता है कि अधिकतम सुरक्षा प्राप्त करने के लिए अपने बजट का एक-एक रुपया कहाँ निवेश करना चाहिए।"
+      </div>
+    </div>
+
+    <!-- SECTION 2: ARCHITECTURE & TECHNICAL STACK -->
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <div class="section-title">एंड-टू-एंड सिस्टम आर्किटेक्चर एवं टेक्नोलॉजी स्टैक</div>
+    </div>
+
+    <div class="card avoid-break">
+      <table style="margin: 0;">
+        <thead>
+          <tr>
+            <th>लेयर</th>
+            <th>प्रयुक्त तकनीक (Technology)</th>
+            <th>इंजीनियरिंग कार्यप्रणाली</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>प्रेजेंटेशन एवं यूआई</strong></td>
+            <td>Next.js 14 App Router, React 18, Tailwind CSS, Lucide Icons, Recharts</td>
+            <td>अत्यधिक तीव्र, उत्तरदायी डैशबोर्ड, रियल-टाइम लॉस एक्सिडेंस कर्व्स और 5x5 डायनामिक हीटमैप।</td>
+          </tr>
+          <tr>
+            <td><strong>प्रमाणीकरण एवं गेटवे</strong></td>
+            <td>Firebase Auth, Firestore, सख्त Next.js Client AuthGuard</td>
+            <td>भूमिका-आधारित पहुंच नियंत्रण (CISO, CFO, Risk Lead, SecOps Analyst) के साथ स्वचालित रूट सुरक्षा।</td>
+          </tr>
+          <tr>
+            <td><strong>परिमाणीकरण इंजन</strong></td>
+            <td>स्टोकेस्टिक मॉन्टे कार्लो इंजन (10,000 रन), Open FAIR™ फ्रेमवर्क</td>
+            <td>खतरे की आवृत्ति (TEF), भेद्यता स्तर, नुकसान की परिमाणता और वैल्यू-एट-रिस्क (95वां परसेंटाइल) की गणना।</td>
+          </tr>
+          <tr>
+            <td><strong>कैपिटल ऑप्टिमाइज़र</strong></td>
+            <td>परेटो फ्रंटियर एवं 0/1 बाउंडेड नैपसैक ऑप्टिमाइज़ेशन एल्गोरिदम</td>
+            <td>CISO के तय बजट के भीतर वित्तीय जोखिम में अधिकतम कमी लाने वाले टूल्स का स्वचालित चयन।</td>
+          </tr>
+          <tr>
+            <td><strong>एआई साइबर को-पायलट</strong></td>
+            <td>LLM-पावर्ड साइबर एनालिस्ट विथ डोमेन रिस्क टैक्सोनॉमी</td>
+            <td>प्राकृतिक भाषा में जोखिम के सवाल पूछना, बोर्ड के लिए सारांश तैयार करना और समाधान रोडमैप बनाना।</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: COMPLETE FEATURE NAVIGATION GUIDE -->
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div class="section-title">मास्टर फीचर नेविगेशन एवं स्क्रीन-दर-स्क्रीन प्रस्तुति गाइड</div>
+    </div>
+
+    <div class="section-desc">
+      लाइव डेमो के दौरान इस क्रम का पालन करें। प्रत्येक स्क्रीन के लिए नेविगेशन पाथ, क्या क्लिक करना है और जजों को हिंदी में क्या समझाना है, नीचे विस्तार से दिया गया है।
+    </div>
+
+    <!-- 1. LANDING PAGE -->
+    <div class="feature-box cyan avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">1. पब्लिक लैंडिंग एवं लाइव ROI सिमुलेटर</div>
+          <span class="route-pill">/</span>
+        </div>
+        <span class="badge cyan">सार्वजनिक पोर्टल</span>
+      </div>
+      <div class="feature-desc">
+        सार्वजनिक पोर्टल जिसमें एनिमेटेड मेट्रिक्स, लाइव साइबर थ्रेट आंकड़े, फीचर शोकेस टैब्स और एक लाइव इंटरैक्टिव बजट सिमुलेटर विजेट शामिल है।
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>कहाँ जाएं (Route):</strong>
+          लोगो पर क्लिक करें या <code>http://localhost:3000/</code> खोलें।
+        </div>
+        <div class="action-item">
+          <strong>क्या दिखाएं/क्लिक करें:</strong>
+          <em>"Interactive Cyber Budget Allocation Simulator"</em> के स्लाइडर को खींचकर $100k से $1M तक ले जाएं और जोखिम में कमी को लाइव बदलते हुए दिखाएं!
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ जजों को क्या समझाएं (Hindi Script)</div>
+        <div class="pitch-text">
+          "देखिए, हमारे होमपेज पर ही एक इंटरैक्टिव सिमुलेटर दिया गया है। जब कोई बैंक CFO बजट स्लाइडर को बढ़ाता है, तो हमारा एल्गोरिदम तुरंत दिखाता है कि अपेक्षित नुकसान में कितनी कमी आएगी और सुरक्षा निवेश पर औसतन 340% तक का रिटर्न (ROSI) कैसे प्राप्त होगा।"
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. LOGIN & RBAC -->
+    <div class="feature-box purple avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">2. एंटरप्राइज प्रमाणीकरण एवं रोल-असाइनमेंट गेटवे</div>
+          <span class="route-pill">/login</span>
+        </div>
+        <span class="badge purple">सुरक्षा एवं RBAC</span>
+      </div>
+      <div class="feature-desc">
+        Firebase पावर्ड एंटरप्राइज लॉगिन। इसमें 'साइन इन' और 'नया खाता' टैब्स के साथ 4 प्रमुख भूमिकाएं हैं: CISO, CFO, Risk Lead, और SecOps Analyst।
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>कहाँ जाएं (Route):</strong>
+          हेडर में <em>"Sign In"</em> पर क्लिक करें या <code>/login</code> खोलें।
+        </div>
+        <div class="action-item">
+          <strong>क्या दिखाएं/क्लिक करें:</strong>
+          चारों रोल बैज (CISO, CFO, Risk Lead, SecOps) में से किसी पर क्लिक करें। क्रेडेंशियल्स अपने आप भर जाएंगे। फिर <em>"Sign In to Platform"</em> दबाएं।
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ जजों को क्या समझाएं (Hindi Script)</div>
+        <div class="pitch-text">
+          "बैंक प्रशासन में अधिकारों का स्पष्ट पृथक्करण (Segregation of Duties) आवश्यक है। हमने रोल-बेस्ड एक्सेस कंट्रोल लागू किया है: एक CFO वित्तीय जोखिम और बजट आवंटन देखता है, जबकि CISO तकनीकी सुरक्षा नियंत्रणों का विश्लेषण करता है।"
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. EXECUTIVE DASHBOARD -->
+    <div class="feature-box emerald avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">3. कार्यकारी साइबर जोखिम डैशबोर्ड (Executive Dashboard)</div>
+          <span class="route-pill">/dashboard</span>
+        </div>
+        <span class="badge green">बोर्ड कमांड सेंटर</span>
+      </div>
+      <div class="feature-desc">
+        C-Suite का मुख्य डैशबोर्ड। कुल अपेक्षित वार्षिक हानि (EAL), जोखिम स्कोर (74/100), 5x5 जोखिम हीटमैप और लॉस एक्सिडेंस संभावना वक्र प्रदर्शित करता है।
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>कहाँ जाएं (Route):</strong>
+          साइडबार में <em>"Dashboard"</em> दबाएं या <code>/dashboard</code> खोलें।
+        </div>
+        <div class="action-item">
+          <strong>क्या दिखाएं/क्लिक करें:</strong>
+          4 मुख्य KPI कार्ड दिखाएं, 5x5 हीटमैप के खानों पर कर्सर ले जाकर खतरों की संख्या दिखाएं, और लॉस एक्सिडेंस कर्व समझाएं।
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ जजों को क्या समझाएं (Hindi Script)</div>
+        <div class="pitch-text">
+          "यह बैंक बोर्ड के लिए सिंगल पेन ऑफ ग्लास है। अमूर्त लाल झंडों के बजाय हम वास्तविक वित्तीय जोखिम दिखाते हैं—जैसे इस परिदृश्य में \$2.4 मिलियन (लगभग ₹20 करोड़) का वार्षिक अपेक्षित नुकसान, जो 95% आत्मविश्वास स्तर के साथ गणितीय रूप से सिद्ध है।"
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. THREAT MODELING -->
+    <div class="feature-box amber avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">4. खतरा परिदृश्य मॉडलिंग (Threat Modeling & TTPs)</div>
+          <span class="route-pill">/threats</span>
+        </div>
+        <span class="badge amber">थ्रेट इंटेलिजेंस</span>
+      </div>
+      <div class="feature-desc">
+        रैनसमवेयर, स्विफ्ट फ्रॉड, क्लाउड अकाउंट हाईजैकिंग और इनसाइडर थ्रेट्स को MITRE ATT&CK तकनीकों और घटना आवृत्ति (TEF) के साथ मॉडल करता है।
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>कहाँ जाएं (Route):</strong>
+          साइडबार में <em>"Threats"</em> पर क्लिक करें या <code>/threats</code> खोलें।
+        </div>
+        <div class="action-item">
+          <strong>क्या दिखाएं/क्लिक करें:</strong>
+          थ्रेट कार्ड्स (उदा. <em>Ransomware Double Extortion</em>) पर क्लिक करके Threat Event Frequency (TEF) और Threat Capability (TCap) मेट्रिक्स दिखाएं।
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ जजों को क्या समझाएं (Hindi Script)</div>
+        <div class="pitch-text">
+          "FAIR फ्रेमवर्क के अनुसार जोखिम = हमले की संभावना × नुकसान का परिमाण। यहाँ हम हमलावर की क्षमता को हमारे मौजूदा सुरक्षा नियंत्रणों के खिलाफ मापकर हमले के सफल होने की सटीक वार्षिक संभावना निकालते हैं।"
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- 5. VULNERABILITY MANAGEMENT -->
+    <div class="feature-box rose avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">5. वित्तीय प्रभाव-आधारित भेद्यता प्राथमिकता (Vulnerabilities)</div>
+          <span class="route-pill">/vulnerabilities</span>
+        </div>
+        <span class="badge amber">भेद्यता प्रबंधन</span>
+      </div>
+      <div class="feature-desc">
+        पारंपरिक CVSS स्कोरिंग से हटकर वित्तीय प्रभाव के आधार पर CVEs की प्राथमिकता तय करता है। जिस खामी से ज्यादा धन का नुकसान हो सकता है, उसे पहले ठीक किया जाता है।
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>कहाँ जाएं (Route):</strong>
+          साइडबार में <em>"Vulnerabilities"</em> पर जाएं या <code>/vulnerabilities</code> खोलें।
+        </div>
+        <div class="action-item">
+          <strong>क्या दिखाएं/क्लिक करें:</strong>
+          दिखाएं कि कैसे प्रत्येक CVE के आगे उसका वित्तीय जोखिम (जैसे CVE-2023-38606 पर \$820K का जोखिम) प्रदर्शित हो रहा है।
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ जजों को क्या समझाएं (Hindi Script)</div>
+        <div class="pitch-text">
+          "आम तौर पर सुरक्षा टीमें किसी गैर-महत्वपूर्ण टेस्ट सर्वर पर मौजूद 9.8 CVSS बग को पहले ठीक करने में हफ़्ते गंवा देती हैं, जबकि मुख्य पेमेंट गेटवे पर मौजूद 7.5 स्कोर के बग को अनदेखा कर देती हैं। ऑप्टिरिस्क कमजोरियों को व्यावसायिक मूल्य से जोड़ता है ताकि टीम सबसे पहले पैसों की सुरक्षा करने वाले पैच लगाए।"
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. ASSETS & VALUE AT RISK -->
+    <div class="feature-box cyan avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">6. महत्वपूर्ण डिजिटल संपत्तियां एवं मूल्य-पर-जोखिम (Assets & VaR)</div>
+          <span class="route-pill">/assets</span>
+        </div>
+        <span class="badge cyan">डिजिटल इन्वेंटरी</span>
+      </div>
+      <div class="feature-desc">
+        बैंक की महत्वपूर्ण संपत्तियों (कोर बैंकिंग डीबीएमएस, स्विफ्ट पेमेंट कनेक्टर, ग्राहक केवाईसी वॉल्ट) का वित्तीय मूल्यांकन और डाउनटाइम नुकसान विश्लेषण।
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>कहाँ जाएं (Route):</strong>
+          साइडबार में <em>"Assets"</em> पर क्लिक करें या <code>/assets</code> खोलें।
+        </div>
+        <div class="action-item">
+          <strong>क्या दिखाएं/क्लिक करें:</strong>
+          'Tier 1 Mission Critical' संपत्तियों को फ़िल्टर करें और प्रति घंटे डाउनटाइम की लागत और संभावित डेटा नियामकीय जुर्माना दिखाएं।
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ जजों को क्या समझाएं (Hindi Script)</div>
+        <div class="pitch-text">
+          "संपत्ति के मूल्यांकन के बिना साइबर जोखिम का परिमाणीकरण असंभव है। ऑप्टिरिस्क संपत्तियों को तीन पैमानों पर मापता है: सर्वर का प्रतिस्थापन मूल्य, प्रति घंटे डाउनटाइम का व्यापारिक नुकसान, और डीपीडीपी/आरबीआई का वैधानिक डेटा जुर्माना।"
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. DEFENSIVE CONTROLS -->
+    <div class="feature-box purple avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">7. सुरक्षा नियंत्रण कैटलॉग एवं प्रभावशीलता (Controls)</div>
+          <span class="route-pill">/controls</span>
+        </div>
+        <span class="badge purple">सुरक्षा टूल्स</span>
+      </div>
+      <div class="feature-desc">
+        सुरक्षा नियंत्रणों (MFA, EDR, जीरो ट्रस्ट, DLP) की सूची, जिसमें उनकी वार्षिक लाइसेंसिंग लागत और जोखिम घटाने की प्रभावशीलता (Efficacy %) शामिल है।
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>कहाँ जाएं (Route):</strong>
+          साइडबार में <em>"Controls"</em> पर जाएं या <code>/controls</code> खोलें।
+        </div>
+        <div class="action-item">
+          <strong>क्या दिखाएं/क्लिक करें:</strong>
+          कंट्रोल्स की स्थिति (सक्रिय बनाम प्रस्तावित), प्रति यूजर लागत और रैनसमवेयर के खिलाफ उनकी प्रतिशत प्रभावशीलता दिखाएं।
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ जजों को क्या समझाएं (Hindi Script)</div>
+        <div class="pitch-text">
+          "हर सुरक्षा टूल की एक स्पष्ट लागत और प्रभावशीलता दर होती है। यह कैटलॉग हमारे कैपिटल ऑप्टिमाइज़र एल्गोरिदम के लिए आवश्यक आधार डेटा प्रदान करता है।"
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. INVESTMENT OPTIMIZER -->
+    <div class="feature-box emerald avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">8. साइबर निवेश एवं बजट ऑप्टिमाइज़र (मुख्य नवाचार - FLAGSHIP)</div>
+          <span class="route-pill">/optimizer</span>
+        </div>
+        <span class="badge green">फ्लैगशिप एल्गोरिदम</span>
+      </div>
+      <div class="feature-desc">
+        सीमित बजट के भीतर अधिकतम जोखिम में कमी लाने वाले सुरक्षा नियंत्रणों के इष्टतम पोर्टफोलियो की गणना के लिए कंस्ट्रेंड नैपसैक समस्या को हल करता है।
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>कहाँ जाएं (Route):</strong>
+          साइडबार में <em>"Optimizer"</em> खोलें या <code>/optimizer</code> पर जाएं।
+        </div>
+        <div class="action-item">
+          <strong>क्या दिखाएं/क्लिक करें:</strong>
+          बजट स्लाइडर को खींचकर $300,000 से $750,000 करें और <em>"Run Optimization"</em> दबाएं। दिखाएं कि कैसे टूल्स का संयोजन स्वचालित रूप से बदलता है!
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ जजों को क्या समझाएं (Hindi Script)</div>
+        <div class="pitch-text">
+          "जज महोदय, यह हमारे पूरे प्रोजेक्ट का दिल है! एक वास्तविक बैंक में CISO के पास सीमित बजट होता है। ऑप्टिरिस्क पारेतो-ऑप्टिमल फ्रंटियर की गणना करता है। जैसे ही मैं बजट स्लाइडर बदलता हूँ, हमारा 0/1 नैपसैक एल्गोरिदम तुरंत उन टूल्स का सटीक संयोजन चुनता है जो प्रति रुपये अधिकतम वित्तीय जोखिम को नष्ट करते हैं।"
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- 9. MONTE CARLO SIMULATOR -->
+    <div class="feature-box cyan avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">9. इंटरैक्टिव मॉन्टे कार्लो जोखिम सिमुलेशन इंजन</div>
+          <span class="route-pill">/simulator</span>
+        </div>
+        <span class="badge cyan">सांख्यिकीय गणित</span>
+      </div>
+      <div class="feature-desc">
+        लॉग-नॉर्मल हानि वितरण और पॉइसन थ्रेट अराइवल दरों को मिलाकर 10,000 से 50,000 यादृच्छिक स्टोकेस्टिक सिमुलेशन चलाता है।
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>कहाँ जाएं (Route):</strong>
+          साइडबार में <em>"Simulator"</em> पर क्लिक करें या <code>/simulator</code> खोलें।
+        </div>
+        <div class="action-item">
+          <strong>क्या दिखाएं/क्लिक करें:</strong>
+          <em>"10,000 Iterations"</em> चुनें, 95% कॉन्फिडेंस इंटरवल सेट करें, और <em>"Execute Monte Carlo Simulation"</em> दबाएं। हिस्टोग्राम को लाइव अपडेट होते दिखाएं!
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ जजों को क्या समझाएं (Hindi Script)</div>
+        <div class="pitch-text">
+          "साइबर हमले कम आवृत्ति वाले लेकिन अत्यंत विनाशकारी घटनाएं होते हैं। यहाँ साधारण औसत काम नहीं करता। हमारा मॉन्टे कार्लो इंजन मिलीसेकंड्स में 10,000 संभावित वर्षों का सिमुलेशन करता है, जिससे हम 95वें और 99वें परसेंटाइल ब्लैक-स्वान नुकसान की सटीक भविष्यवाणी कर पाते हैं।"
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. REGULATORY COMPLIANCE -->
+    <div class="feature-box amber avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">10. नियामक अनुपालन मैट्रिक्स (RBI / SEBI / CERT-In)</div>
+          <span class="route-pill">/compliance</span>
+        </div>
+        <span class="badge amber">भारतीय नियामक</span>
+      </div>
+      <div class="feature-desc">
+        अनुसूचित वाणिज्यिक बैंकों के लिए RBI साइबर सुरक्षा ढांचे, सेबी CSCRF, CERT-In निर्देशों और NIST CSF 2.0 का स्वचालित ऑडिट ट्रैकर।
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>कहाँ जाएं (Route):</strong>
+          साइडबार में <em>"Compliance"</em> पर जाएं या <code>/compliance</code> खोलें।
+        </div>
+        <div class="action-item">
+          <strong>क्या दिखाएं/क्लिक करें:</strong>
+          <em>"RBI Cyber Security Framework"</em> और <em>"SEBI CSCRF"</em> टैब्स के बीच स्विच करें। ऑडिट रेडीनेस स्कोर और कमियों की सूची दिखाएं।
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ जजों को क्या समझाएं (Hindi Script)</div>
+        <div class="pitch-text">
+          "भारतीय बैंकों के लिए नियमों का पालन अत्यंत अनिवार्य है। ऑप्टिरिस्क सभी तकनीकी कंट्रोल्स को सीधे भारतीय रिज़र्व बैंक (RBI) के मास्टर निर्देशों से जोड़ता है। जिस ऑडिट रिपोर्ट को बनाने में कंसल्टिंग कंपनियां 6 हफ्ते लगाती हैं, वह ऑप्टिरिस्क में 2 सेकंड में तैयार हो जाती है।"
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. RISK INTELLIGENCE -->
+    <div class="feature-box purple avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">11. वैश्विक भू-राजनीतिक थ्रेट इंटेलिजेंस रडार</div>
+          <span class="route-pill">/risk-intelligence</span>
+        </div>
+        <span class="badge purple">थ्रेट रडार</span>
+      </div>
+      <div class="feature-desc">
+        सक्रिय हैकर समूहों (जैसे FIN7, LockBit), वित्तीय क्षेत्र पर होने वाले लक्षित हमलों और लाइव इंडिकेटर्स ऑफ कॉम्प्रोमाइज (IoCs) का रडार।
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>कहाँ जाएं (Route):</strong>
+          साइडबार में <em>"Risk Intelligence"</em> खोलें या <code>/risk-intelligence</code> पर जाएं।
+        </div>
+        <div class="action-item">
+          <strong>क्या दिखाएं/क्लिक करें:</strong>
+          बैंकिंग क्षेत्र को निशाना बनाने वाले सक्रिय अभियानों और रियल-टाइम थ्रेट इंटेलिजेंस फीड्स की जांच करें।
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ जजों को क्या समझाएं (Hindi Script)</div>
+        <div class="pitch-text">
+          "हमारी जोखिम गणनाएं स्थिर नहीं हैं। यह रडार वैश्विक थ्रेट टेलीमेट्री प्राप्त करता है, ताकि जैसे ही कोई नया ज़ीरो-डे हमला बैंक को टारगेट करे, खतरे की आवृत्ति अपने आप अपडेट हो जाए।"
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. GLOBAL ATTACK MAP -->
+    <div class="feature-box cyan avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">12. ग्लोबल अटैक सरफेस एवं इंफ्रास्ट्रक्चर मानचित्र</div>
+          <span class="route-pill">/map</span>
+        </div>
+        <span class="badge cyan">भौगोलिक विश्लेषण</span>
+      </div>
+      <div class="feature-desc">
+        बैंक की शाखाओं, क्लाउड डेटा केंद्रों (AWS मुंबई, Azure इंडिया) और आने वाले विदेशी साइबर हमलों का भौगोलिक विज़ुअलाइज़ेशन।
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>कहाँ जाएं (Route):</strong>
+          साइडबार में <em>"Attack Map"</em> पर जाएं या <code>/map</code> खोलें।
+        </div>
+        <div class="action-item">
+          <strong>क्या दिखाएं/क्लिक करें:</strong>
+          मानचित्र पर विभिन्न डेटा सेंटरों और सीमा पार से आने वाले साइबर हमलों के फ्लो को दिखाएं।
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ जजों को क्या समझाएं (Hindi Script)</div>
+        <div class="pitch-text">
+          "यह बैंक नेतृत्व को संपूर्ण भौगोलिक स्थिति का प्रत्यक्ष ज्ञान देता है कि किन देशों या क्षेत्रों से भारतीय बैंकिंग सर्वरों पर हमले किए जा रहे हैं।"
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- 13. AI CYBER COPILOT -->
+    <div class="feature-box emerald avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">13. स्वायत्त AI साइबर एनालिस्ट एवं को-पायलट</div>
+          <span class="route-pill">/analyst</span>
+        </div>
+        <span class="badge green">जेनरेटिव एआई</span>
+      </div>
+      <div class="feature-desc">
+        जेनरेटिव एआई सुरक्षा सहायक। जटिल तकनीकी टेलीमेट्री को आसान बोर्डरूम भाषा में समझाता है और रणनीतिक समाधान सुझाता है।
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>कहाँ जाएं (Route):</strong>
+          साइडबार में <em>"AI Analyst"</em> खोलें या <code>/analyst</code> पर जाएं।
+        </div>
+        <div class="action-item">
+          <strong>क्या दिखाएं/क्लिक करें:</strong>
+          सुझाए गए प्रॉम्प्ट्स (जैसे <em>"Explain our primary ransomware loss drivers"</em>) पर क्लिक करें और एआई को त्वरित रणनीतिक उत्तर देते हुए दिखाएं!
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ जजों को क्या समझाएं (Hindi Script)</div>
+        <div class="pitch-text">
+          "बोर्ड के सदस्यों को क्रिप्टोग्राफी की तकनीकी जटिलताएं समझने की जरूरत नहीं है। हमारा एआई को-पायलट एक CFO को सामान्य भाषा में सवाल पूछने और तुरंत निर्णय लेने योग्य व्यावसायिक विश्लेषण प्राप्त करने की सुविधा देता है।"
+        </div>
+      </div>
+    </div>
+
+    <!-- 14. REPORTS -->
+    <div class="feature-box amber avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">14. नियामक एवं बोर्ड ऑडिट रिपोर्टिंग (Reports)</div>
+          <span class="route-pill">/reports</span>
+        </div>
+        <span class="badge amber">ऑडिट रेडी</span>
+      </div>
+      <div class="feature-desc">
+        निदेशक मंडल (Board of Directors) की प्रस्तुतियों, RBI विनियामक फाइलिंग और साइबर बीमा अंडरराइटिंग के लिए एक-क्लिक में ऑडिट रिपोर्ट का निर्माण।
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>कहाँ जाएं (Route):</strong>
+          साइडबार में <em>"Reports"</em> पर जाएं या <code>/reports</code> खोलें।
+        </div>
+        <div class="action-item">
+          <strong>क्या दिखाएं/क्लिक करें:</strong>
+          उपलब्ध रिपोर्ट पैकेज (Board Summary, RBI Compliance Audit Pack, Cyber Insurance Dossier) और उनके एक्सपोर्ट विकल्प दिखाएं।
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ जजों को क्या समझाएं (Hindi Script)</div>
+        <div class="pitch-text">
+          "हर तिमाही के अंत में CISO टीमें पीपीटी बनाने में हफ्तों बिताती हैं। ऑप्टिरिस्क पूरे जोखिम शासन को केवल एक क्लिक में पूर्णतः ऑडिट-ग्रेड अनुपालन रिपोर्ट में बदल देता है।"
+        </div>
+      </div>
+    </div>
+
+    <!-- 15. SETTINGS -->
+    <div class="feature-box purple avoid-break">
+      <div class="feature-top">
+        <div class="feature-title-wrap">
+          <div class="feature-title">15. शासन सेटिंग्स एवं जोखिम भूख सीमाएं (Settings)</div>
+          <span class="route-pill">/settings</span>
+        </div>
+        <span class="badge purple">गवर्नेंस</span>
+      </div>
+      <div class="feature-desc">
+        बैंक की अधिकतम जोखिम सहनशीलता (Risk Appetite Threshold), मुद्रा चयन (INR / USD), और सुरक्षा अलर्ट सीमाएं तय करने का पैनल।
+      </div>
+      <div class="action-grid">
+        <div class="action-item">
+          <strong>कहाँ जाएं (Route):</strong>
+          साइडबार में <em>"Settings"</em> पर जाएं या <code>/settings</code> खोलें।
+        </div>
+        <div class="action-item">
+          <strong>क्या दिखाएं/क्लिक करें:</strong>
+          <em>"Maximum Acceptable Loss Threshold"</em> स्लाइडर को एडजस्ट करें और दिखाएं कि नुकसान सीमा पार होने पर चेतावनी कैसे जारी होती है।
+        </div>
+      </div>
+      <div class="pitch-callout">
+        <div class="pitch-head">🗣️ जजों को क्या समझाएं (Hindi Script)</div>
+        <div class="pitch-text">
+          "प्रत्येक संस्थान की जोखिम सहन करने की क्षमता अलग होती है। यहाँ बैंक प्रबंधन अपनी 'जोखिम भूख' (Risk Appetite) तय करता है, और प्लेटफ़ॉर्म लगातार इस सीमा की निगरानी करता है।"
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 4: 5-MINUTE PRESENTATION SCRIPT -->
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <div class="section-title">स्मार्ट इंडिया हैकथॉन में 5 मिनट की विजयी प्रेजेंटेशन स्क्रिप्ट (Hindi Script)</div>
+    </div>
+
+    <div class="section-desc">
+      SIH जूरी के सामने बोलने से पहले अपनी टीम के साथ इस 5 मिनट के समय चक्र का अभ्यास अवश्य करें।
+    </div>
+
+    <div class="timeline-item avoid-break">
+      <div class="timeline-time">0:00 - 1:00</div>
+      <div class="timeline-content">
+        <h4>मिनट 1: मूल संकट एवं एंटरप्राइज गेटवे</h4>
+        <p><strong>स्क्रीन:</strong> होम (<code>/</code>) एवं लॉगिन (<code>/login</code>)<br>
+        <strong>हिंदी संवाद:</strong> "नमस्ते आदरणीय जूरी महोदय। भारतीय बैंकिंग क्षेत्र लगातार परिष्कृत साइबर हमलों का सामना कर रहा है। लेकिन सुरक्षा टीमें CVEs और अलर्ट्स की तकनीकी भाषा बोलती हैं, जबकि बोर्ड और CFO वित्तीय नुकसान और बैलेंस शीट की भाषा समझते हैं। ऑप्टिरिस्क इस बहुत बड़े अंतर को समाप्त करता है। यह हमारा रोल-बेस्ड प्रमाणीकरण गेटवे है, जो CISO, CFO और रिस्क लीड के लिए सख्त एक्सेस कंट्रोल सुनिश्चित करता है।"</p>
+      </div>
+    </div>
+
+    <div class="timeline-item avoid-break">
+      <div class="timeline-time">1:00 - 2:00</div>
+      <div class="timeline-content">
+        <h4>मिनट 2: कार्यकारी वित्तीय परिमाणीकरण डैशबोर्ड</h4>
+        <p><strong>स्क्रीन:</strong> डैशबोर्ड (<code>/dashboard</code>)<br>
+        <strong>हिंदी संवाद:</strong> "लॉगिन करने के बाद यह डैशबोर्ड हमारे कुल संभावित वित्तीय नुकसान को सामने रखता है: \$2.4 मिलियन (लगभग ₹20 करोड़) का वार्षिक अपेक्षित नुकसान और 340% का रिटर्न ऑन सिक्योरिटी इनवेस्टमेंट। हमारा 5x5 डायनामिक हीटमैप और लॉस एक्सिडेंस कर्व ओपन FAIR™ मानक का उपयोग करके रोजमर्रा के खतरों और 95वें परसेंटाइल के दुर्लभ लेकिन भयंकर हमलों दोनों का सटीक मॉडल तैयार करते हैं।"</p>
+      </div>
+    </div>
+
+    <div class="timeline-item avoid-break">
+      <div class="timeline-time">2:00 - 3:00</div>
+      <div class="timeline-content">
+        <h4>मिनट 3: एल्गोरिथमिक ऑप्टिमाइज़र एवं मॉन्टे कार्लो इंजन (प्रस्तुति का मुख्य आकर्षण)</h4>
+        <p><strong>स्क्रीन:</strong> ऑप्टिमाइज़र (<code>/optimizer</code>) एवं सिमुलेटर (<code>/simulator</code>)<br>
+        <strong>हिंदी संवाद:</strong> "अब आते हैं हमारे सबसे बड़े तकनीकी नवाचार पर: साइबर इन्वेस्टमेंट ऑप्टिमाइज़र। जब मैं बजट स्लाइडर को ₹4 करोड़ (\$500k) पर सेट करता हूँ, तो हमारा नैपसैक एल्गोरिदम तुरंत उन टूल्स का सटीक संयोजन चुनता है जो प्रति रुपये अधिकतम जोखिम समाप्त करते हैं। वहीं सिमुलेटर में, हम वास्तविक समय में 10,000 मॉन्टे कार्लो सिमुलेशन चलाकर सुरक्षा टूल्स लगाने के बाद जोखिम में आई गिरावट को प्रमाणित करते हैं।"</p>
+      </div>
+    </div>
+
+    <div class="timeline-item avoid-break">
+      <div class="timeline-time">3:00 - 4:00</div>
+      <div class="timeline-content">
+        <h4>मिनट 4: आरबीआई एवं सेबी विनियामक अनुपालन मैट्रिक्स</h4>
+        <p><strong>स्क्रीन:</strong> अनुपालन (<code>/compliance</code>)<br>
+        <strong>हिंदी संवाद:</strong> "भारतीय बैंकों के लिए विनियामक अनुपालन अत्यंत अनिवार्य है। ऑप्टिरिस्क हमारे सभी सुरक्षा मापदंडों को सीधे भारतीय रिज़र्व बैंक (RBI) के साइबर सुरक्षा दिशानिर्देशों, सेबी CSCRF और CERT-In के साथ मैप करता है, जिससे ऑडिट रेडीनेस स्कोर और सुधार योजनाएं तुरंत तैयार हो जाती हैं।"</p>
+      </div>
+    </div>
+
+    <div class="timeline-item avoid-break">
+      <div class="timeline-time">4:00 - 5:00</div>
+      <div class="timeline-content">
+        <h4>मिनट 5: एआई साइबर को-पायलट, रिपोर्टिंग एवं निष्कर्ष</h4>
+        <p><strong>स्क्रीन:</strong> एआई एनालिस्ट (<code>/analyst</code>) एवं रिपोर्ट्स (<code>/reports</code>)<br>
+        <strong>हिंदी संवाद:</strong> "अंत में, हमारा एआई को-पायलट किसी भी गैर-तकनीकी अधिकारी को सामान्य भाषा में जोखिम समझने की सुविधा देता है, और हमारी रिपोर्टिंग प्रणाली केवल एक क्लिक में बोर्ड के लिए ऑडिट रिपोर्ट तैयार कर देती है। ऑप्टिरिस्क साइबर सुरक्षा को एक अस्पष्ट खर्च से बदलकर एक अनुकूलित, गणितीय रूप से प्रमाणित वित्तीय निवेश बनाता है। धन्यवाद, अब हम आपके प्रश्नों के उत्तर देने के लिए तैयार हैं।"</p>
+      </div>
+    </div>
+
+    <!-- SECTION 5: INVIGILATOR Q&A DEFENSE -->
+    <div class="section-header avoid-break">
+      <div class="section-num">05</div>
+      <div class="section-title">जूरी के संभावित कठिन प्रश्न एवं सटीक उत्तर (Invigilator Q&A Defense Matrix)</div>
+    </div>
+
+    <div class="card avoid-break">
+      <table style="margin: 0;">
+        <thead>
+          <tr>
+            <th style="width: 35%;">जजों का संभावित प्रश्न</th>
+            <th>आपका सटीक और अकाट्य उत्तर (Winning Defense Answer)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>"जब साइबर हमलों का डेटा गोपनीय होता है, तो आप वित्तीय नुकसान की सही गणना कैसे करते हैं?"</strong></td>
+            <td>"हम ओपन FAIR™ मानक और कैलिब्रेटेड बीटा-पर्ट (Beta-PERT) प्रायिकता वितरण का उपयोग करते हैं। केवल एक संख्या का अनुमान लगाने के बजाय, हम उद्योग के प्रमाणित अध्ययनों (जैसे Verizon DBIR और Ponemon इंस्टीट्यूट कॉस्ट ऑफ डेटा ब्रीच रिपोर्ट) से कैलिब्रेटेड 90% आत्मविश्वास सीमाएं (न्यूनतम, सर्वाधिक संभावित, अधिकतम) लेते हैं, जिन्हें हमारा मॉन्टे कार्लो इंजन 10,000 बार सैंपल करता है।"</td>
+          </tr>
+          <tr>
+            <td><strong>"ऑप्टिरिस्क नेसस (Nessus) या क्वालिस (Qualys) जैसे वल्नेरेबिलिटी स्कैनर से अलग कैसे है?"</strong></td>
+            <td>"नेसस और क्वालिस केवल खोज उपकरण (Discovery Tools) हैं—वे बिना व्यावसायिक संदर्भ के हजारों CVEs फेंक देते हैं। ऑप्टिरिस्क उनके ऊपर एक मात्रात्मक निर्णय इंजन (Quantitative Decision Engine) के रूप में कार्य करता है: हम भेद्यता की शोषण क्षमता को प्रभावित बैंक संपत्ति के वित्तीय मूल्य से गुणा करते हैं, जिससे CFO को पता चलता है कि कितने रुपयों का दांव लगा है।"</td>
+          </tr>
+          <tr>
+            <td><strong>"क्या यह प्लेटफ़ॉर्म भारतीय नियामक मानकों के अनुरूप है?"</strong></td>
+            <td>"जी हाँ, बिल्कुल! हमने विशेष रूप से <strong>अनुसूचित वाणिज्यिक बैंकों के लिए RBI साइबर सुरक्षा ढांचे</strong>, <strong>सेबी CSCRF</strong>, CERT-In निर्देशों और भारत के <strong>DPDP अधिनियम 2023</strong> के तहत निर्धारित वित्तीय जुर्माने के नियमों को ऑटोमेट किया है।"</td>
+          </tr>
+          <tr>
+            <td><strong>"ऑप्टिमाइज़र के पीछे कौन सा गणितीय एल्गोरिदम काम करता है?"</strong></td>
+            <td>"हम पूंजी आवंटन को 0/1 बाउंडेड नैपसैक समस्या (Bounded Knapsack Problem) के रूप में मॉडल करते हैं, जिसे डायनामिक प्रोग्रामिंग और ग्रीडी पारेतो-ऑप्टिमल सन्निकटन द्वारा हल किया जाता है। इसका उद्देश्य फलन बजट सीमा $\sum c_i x_i \le B$ के तहत कुल जोखिम में कमी $\max \sum \Delta \text{Loss}_i$ को अधिकतम करना है।"</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FOOTER SUMMARY -->
+    <div style="text-align: center; margin-top: 40px; padding: 20px; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 12px;">
+      ऑप्टिरिस्क प्लेटफ़ॉर्म • सतत साइबर जोखिम परिमाणीकरण एवं निवेश अनुकूलन • स्मार्ट इंडिया हैकथॉन (SIH) मास्टर डॉक्यूमेंटेशन डेक
+    </div>
+
+  </div>
+</body>
+</html>

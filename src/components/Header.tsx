@@ -106,17 +106,29 @@ export default function Header() {
           <RefreshCw className="w-3.5 h-3.5" />
         </button>
 
-        {/* SIH Master Pitch Deck & PDF Guide Button */}
-        <a
-          href="/OptiRisk_SIH_Master_Presentation_Guide.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Open SIH Master Pitch Deck & Feature Navigation Guide (PDF)"
-          className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-50 hover:bg-cyan-100 border border-cyan-200 text-xs font-semibold text-cyan-800 transition-colors shadow-sm"
-        >
-          <FileText className="w-3.5 h-3.5 text-cyan-600" />
-          <span className="hidden sm:inline">SIH PDF Guide</span>
-        </a>
+        {/* SIH Master Pitch Deck & PDF Guide Buttons (English & Hindi) */}
+        <div className="hidden sm:flex items-center gap-1.5">
+          <a
+            href="/OptiRisk_SIH_Master_Presentation_Guide.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Open SIH Master Pitch Deck & Feature Navigation Guide in English (PDF)"
+            className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-cyan-50 hover:bg-cyan-100 border border-cyan-200 text-[11px] font-semibold text-cyan-800 transition-colors shadow-2xs"
+          >
+            <FileText className="w-3 h-3 text-cyan-600" />
+            <span>SIH Deck (EN)</span>
+          </a>
+          <a
+            href="/OptiRisk_SIH_Master_Presentation_Guide_Hindi.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Open SIH Master Pitch Deck & Feature Navigation Guide in Hindi (PDF)"
+            className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-[11px] font-semibold text-emerald-800 transition-colors shadow-2xs"
+          >
+            <FileText className="w-3 h-3 text-emerald-600" />
+            <span>SIH गाइड (हिंदी)</span>
+          </a>
+        </div>
 
         {/* User Profile & Persona Switcher Dropdown */}
         <div className="relative">
